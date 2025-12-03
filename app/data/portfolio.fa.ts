@@ -159,6 +159,27 @@ const portfolioFa: PortfolioData = {
       ],
       category: "public",
     },
+    {
+      name: "Monasef",
+      description: "همون فایل، نصف هزینه اینترنت ⁦;⁠-⁠)",
+      thumbnail: "/img/projects/monasef.png",
+      status: "فعال",
+      opensource: false,
+      links: [
+        {
+          label: "وب‌سایت",
+          to: "https://monasef.ir/",
+          icon: "i-mdi-link",
+        },
+      ],
+      icons: [
+        "i-logos-dotnet",
+        "i-logos-bootstrap",
+        "i-logos-docker-icon",
+        "i-logos-prometheus",
+      ],
+      category: "freelance",
+    },
   ],
 };
 

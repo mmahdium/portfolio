@@ -158,6 +158,56 @@ export const portfolio: PortfolioData = {
       ],
       category: "public",
     },
+    {
+      name: "HoolIt",
+      description:
+        "HoolIt is an open-source project aiming to provide a simple and easy-to-use alternative to the beloved dweet.io.",
+      // thumbnail: "/img/projects/monasef.png",
+      status: "Active",
+      opensource: true,
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/HoolIt",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-dotnet", "i-logos-docker-icon"],
+      category: "public",
+    },
+    {
+      name: "PolyList",
+      description:
+        "PolyList is a social music platform where you can create, manage, and share playlists and libraries with friends. Track your listening history through a public profile powered by web scrobbling.",
+      thumbnail: "/img/projects/polylist.png",
+      status: "Active",
+      opensource: false,
+      links: [
+        {
+          label: "Website",
+          to: "https://pl.mahdium.ir",
+          icon: "i-mdi-link",
+        },
+        {
+          label: "My Profile",
+          to: "https://pl.mahdium.ir/p/mahdium",
+          icon: "i-mdi-link",
+        },
+      ],
+      icons: [
+        "i-logos-go",
+        "i-logos-gin",
+        "i-logos-nuxt-icon",
+        "i-logos-vercel-icon",
+        "i-logos-vue",
+        "i-logos-daisyui-icon",
+        "i-logos-tailwindcss-icon",
+        "i-logos-supabase-icon",
+        "i-logos-postgresql",
+        "i-logos-docker-icon",
+      ],
+      category: "freelance",
+    },
   ],
 };
 
