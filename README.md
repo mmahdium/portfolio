@@ -133,8 +133,7 @@ Compatible with any static hosting service:
 **Output Directory**: `.output/public`
 
 ### Environment Variables
-- `NUXT_PUBLIC_LOAD_PLAUSIBLE` - Enable/disable Plausible analytics (optional)
-- `NUXT_PUBLIC_SITE_URL` - Site URL for sitemap and RSS (default: https://aliarghyani.vercel.app)
+- `NUXT_PUBLIC_SITE_URL` - Site URL for sitemap and RSS (default: https://mahdium.ir)
 
 ## 🧪 Testing the Structure
 

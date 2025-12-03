@@ -51,7 +51,7 @@ const nextPost = computed(() => {
 })
 
 // SEO meta tags
-const siteUrl = 'https://aliarghyani.vercel.app' // TODO: Move to runtime config
+const siteUrl = 'https://mahdium.ir' // TODO: Move to runtime config
 
 // Custom meta tags
 if (post.value) {
