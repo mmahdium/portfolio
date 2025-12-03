@@ -71,7 +71,7 @@ if (post.value) {
     twitterImage: postData.image || '/img/blog/default-cover.jpg',
     articlePublishedTime: postData.date,
     articleModifiedTime: postData.updatedAt || postData.date,
-    articleAuthor: [postData.author || 'Ali Arghyani'],
+    articleAuthor: [postData.author || 'Mohammad Mahdi Mohammadi'],
     articleTag: postData.tags
   })
 
@@ -90,11 +90,11 @@ if (post.value) {
           dateModified: postData.updatedAt || postData.date,
           author: {
             '@type': 'Person',
-            name: postData.author || 'Ali Arghyani'
+            name: postData.author || 'Mohammad Mahdi Mohammadi'
           },
           publisher: {
             '@type': 'Person',
-            name: 'Ali Arghyani'
+            name: 'Mohammad Mahdi Mohammadi'
           }
         })
       }
