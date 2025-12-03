@@ -7,8 +7,8 @@
       </div>
       <UTimeline :items="experiences" :default-value="0" color="primary" size="md" class="max-w-3xl">
         <template #indicator="{ item }">
-          <img v-if="item.logo" :src="item.logo" :alt="`${item.company} logo`"
-            class="h-10 w-10 object-contain" loading="lazy" />
+          <img v-if="item.logo" :src="item.logo" :alt="`${item.company} logo`" class="h-10 w-10 object-contain"
+            loading="lazy" />
         </template>
         <template #title="{ item }">
           <div class="flex flex-col gap-1">
@@ -64,7 +64,7 @@ const experiences = computed<RichTimelineItem[]>(() => {
           descriptions: pos.description,
           icons: pos.icons,
           icon: getIconForRole(pos.title),
-          logo: pos.logo || company.logo || getCompanyLogo(company.company),
+          logo: pos.logo || company.logo,
           value: `${index}-${posIndex}`
         })
       })
@@ -78,7 +78,7 @@ const experiences = computed<RichTimelineItem[]>(() => {
         descriptions: single.description,
         icons: single.icons,
         icon: getIconForRole(single.role),
-        logo: single.logo || getCompanyLogo(single.company),
+        logo: single.logo,
         value: index
       })
     }
@@ -87,12 +87,7 @@ const experiences = computed<RichTimelineItem[]>(() => {
   return items
 })
 
-function getCompanyLogo(name: string): string | undefined {
-  const lower = name.toLowerCase()
-  if (lower.includes('huawei')) return '/img/huawei.svg'
-  if (lower.includes('nexaportal')) return '/img/NexaPortal1.png'
-  return undefined
-}
+
 
 function getIconForRole(position: string): string {
   const role = position.toLowerCase()

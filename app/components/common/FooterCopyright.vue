@@ -6,8 +6,8 @@
           <NuxtImg :src="logoSrc" alt="Mahdium logo" width="64" height="64" class="h-12 w-12" format="png"
             loading="lazy" />
           <template #fallback>
-            <NuxtImg src="/favicon/android-chrome-192x192.png" alt="Mahdium logo" width="64" height="64"
-              class="h-12 w-12" format="png" loading="lazy" />
+            <NuxtImg src="/favicon/favicon.png" alt="Mahdium logo" width="64" height="64" class="h-12 w-12"
+              format="png" loading="lazy" />
           </template>
         </ClientOnly>
         <p>&copy; {{ currentYear }}, <span class="font-semibold text-gray-900 dark:text-gray-100">Mahdium</span> -
@@ -31,7 +31,7 @@ const colorMode = useColorMode()
 const currentYear = computed(() => new Date().getFullYear())
 const logoSrc = computed(() => {
   return colorMode.value === 'dark'
-    ? '/favicon/android-chrome-192x192-dark.png'
-    : '/favicon/android-chrome-192x192.png'
+    ? '/favicon/favicon.png'
+    : '/favicon/favicon.png'
 })
 </script>
