@@ -81,7 +81,7 @@
             </ClientTooltip>
           </div>
         </div>
-        <div
+        <div v-show="portfolio.profile.avatar"
           class="block mx-auto sm:mx-0 shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 ring-4 ring-primary-400/50 dark:ring-primary-300/40 rounded-full overflow-hidden">
           <NuxtImg :src="portfolio.profile.avatar || undefined" :alt="portfolio.profile.name"
             sizes="96px sm:128px md:160px" width="160" height="160" class="h-full w-full object-cover" format="webp"

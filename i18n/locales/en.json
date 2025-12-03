@@ -32,10 +32,6 @@
       "label": "Teamwork",
       "desc": "Collaborative, reliable, and generous with knowledge sharing."
     },
-    "teamLeadership": {
-      "label": "Team leadership",
-      "desc": "Aligns goals, unblocks teammates, fosters momentum."
-    },
     "communication": {
       "label": "Communication",
       "desc": "Clear, concise updates and respectful listening."
@@ -43,10 +39,6 @@
     "teamPerformance": {
       "label": "Team performance",
       "desc": "Improves processes and outcomes with actionable feedback."
-    },
-    "customerFocus": {
-      "label": "Customer focus",
-      "desc": "Owns outcomes; follows through to satisfaction."
     },
     "projectManagement": {
       "label": "Project management",
@@ -59,18 +51,14 @@
   },
   "languageSection": {
     "tagline": "Advanced English communication for global collaboration.",
-    "duolingo": {
-      "label": "Duolingo English Test",
-      "value": "85"
-    },
     "items": {
       "ielts": {
         "title": "IELTS readiness",
         "desc": "Ready to schedule the IELTS exam immediately once an overseas opportunity is confirmed; current study plan keeps academic band goals on track."
       },
-      "huawei": {
-        "title": "English at Huawei",
-        "desc": "Ran performance analytics, stakeholder updates, and incident coordination entirely in English for 7+ years with multinational teams."
+      "ttc": {
+        "title": "TTC Certificate and English Teaching",
+        "desc": "Holder of a Teacher Training Course (TTC) certificate with experience teaching English; delivering language concepts and skills to learners at various levels."
       }
     }
   },

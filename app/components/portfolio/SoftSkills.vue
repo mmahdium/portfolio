@@ -29,10 +29,8 @@ type SoftKey =
   | 'problemSolving'
   | 'attentionToDetail'
   | 'teamwork'
-  | 'teamLeadership'
   | 'communication'
   | 'teamPerformance'
-  | 'customerFocus'
   | 'projectManagement'
   | 'adaptability'
 
@@ -42,10 +40,10 @@ const base: { key: SoftKey; icon: string }[] = [
   { key: 'problemSolving', icon: 'i-twemoji-light-bulb' },
   { key: 'attentionToDetail', icon: 'i-twemoji-magnifying-glass-tilted-left' },
   { key: 'teamwork', icon: 'i-twemoji-people-holding-hands' },
-  { key: 'teamLeadership', icon: 'i-twemoji-crown' },
+  // { key: 'teamLeadership', icon: 'i-twemoji-crown' },
   { key: 'communication', icon: 'i-twemoji-speech-balloon' },
   { key: 'teamPerformance', icon: 'i-twemoji-chart-increasing' },
-  { key: 'customerFocus', icon: 'i-twemoji-handshake' },
+  // { key: 'customerFocus', icon: 'i-twemoji-handshake' },
   { key: 'projectManagement', icon: 'i-twemoji-spiral-calendar' },
   { key: 'adaptability', icon: 'i-twemoji-counterclockwise-arrows-button' },
 ]

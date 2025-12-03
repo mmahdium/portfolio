@@ -1,5 +1,5 @@
 <template>
-  <section ref="sectionEl" class="py-8">
+  <section ref="sectionEl" class="py-8" v-if="recs.length > 0">
     <UContainer>
       <div class="flex flex-wrap items-center gap-3 mb-8">
         <!-- <div

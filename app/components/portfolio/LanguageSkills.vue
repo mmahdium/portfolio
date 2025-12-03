@@ -12,7 +12,7 @@
             <p class="text-sm text-gray-600 dark:text-gray-300 max-w-3xl">
               {{ t('languageSection.tagline') }}
             </p>
-            <UBadge
+            <!-- <UBadge
               size="lg"
               color="primary"
               variant="soft"
@@ -25,7 +25,7 @@
               <span>
                 {{ t('languageSection.duolingo.label') }}: {{ t('languageSection.duolingo.value') }}
               </span>
-            </UBadge>
+            </UBadge> -->
           </div>
 
           <div class="grid gap-4 md:grid-cols-2">
@@ -75,11 +75,11 @@ const items = computed(() => [
     description: t('languageSection.items.ielts.desc'),
   },
   {
-    key: 'huawei',
+    key: 'ttc',
     iconType: 'icon' as const,
     icon: 'i-twemoji-globe-with-meridians',
-    title: t('languageSection.items.huawei.title'),
-    description: t('languageSection.items.huawei.desc'),
+    title: t('languageSection.items.ttc.title'),
+    description: t('languageSection.items.ttc.desc'),
   },
 ])
 </script>
