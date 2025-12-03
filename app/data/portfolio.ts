@@ -5,7 +5,8 @@ export const portfolio: PortfolioData = {
     name: "Mohammad Mahdi Mohammadi",
     title: "A Developer?",
     location: "Kerman Province - Iran",
-    summary: "A Developer Maybe? IDK what to say here yet.",
+    summary:
+      "My background is primarily in backend development and system administration, where I've always enjoyed working with infrastructure, servers, and the logic that powers applications. More recently, I've begun learning Nuxt and Vue, expanding into frontend development to round out my skill set. While my main focus remains backend and system administration, I now also build user interfaces with Nuxt 4 and Vue 3, enabling me to deliver complete, end‑to‑end solutions.",
     // avatar: "/img/AliProfile.webp",
     socials: {
       website: "https://mahdium.ir/",
