@@ -1,5 +1,6 @@
 <template>
   <UApp :toaster="{ expand: false }">
+    <Analytics />
     <NuxtLoadingIndicator color="#6366F1" :height="3" :throttle="100" :duration="2000" />
     <NuxtLayout>
       <NuxtPage />
@@ -9,6 +10,7 @@
 
 <script setup lang="ts">
 import { usePortfolio } from '@/composables/usePortfolio'
+import { Analytics } from '@vercel/analytics/nuxt'
 
 const { locale, locales } = useI18n()
 const portfolio = usePortfolio()
