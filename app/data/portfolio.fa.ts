@@ -147,6 +147,11 @@ const portfolioFa: PortfolioData = {
       opensource: true,
       links: [
         {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/TorrentMax",
+          icon: "i-mdi-github",
+        },
+        {
           label: "وب‌سایت",
           to: "https://torrentmax.monasef.ir/",
           icon: "i-mdi-link",
