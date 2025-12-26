@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-6xl mx-auto pt-24">
+  <div class="max-w-6xl mx-auto pt-12 md:pt-24">
     <!-- Above-the-fold content only (improves LCP by reducing initial render work) -->
     <Hero />
 
@@ -9,6 +9,7 @@
     <AIStack />
     <SoftSkills />
     <LanguageSkills />
+    <GitHubActivity username="aliarghyani" />
     <WorkExperience />
     <EducationList />
     <RecommendationsCarousel />
@@ -24,6 +25,7 @@ const Skills = defineAsyncComponent(() => import('@/components/portfolio/Skills.
 const AIStack = defineAsyncComponent(() => import('@/components/portfolio/AIStack.vue'))
 const SoftSkills = defineAsyncComponent(() => import('@/components/portfolio/SoftSkills.vue'))
 const LanguageSkills = defineAsyncComponent(() => import('@/components/portfolio/LanguageSkills.vue'))
+const GitHubActivity = defineAsyncComponent(() => import('@/components/portfolio/GitHubActivity.vue'))
 const WorkExperience = defineAsyncComponent(() => import('@/components/portfolio/WorkExperience.vue'))
 const EducationList = defineAsyncComponent(() => import('@/components/portfolio/EducationList.vue'))
 const RecommendationsCarousel = defineAsyncComponent(() => import('@/components/portfolio/RecommendationsCarousel.vue'))

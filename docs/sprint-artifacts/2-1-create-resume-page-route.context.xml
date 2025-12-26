@@ -1,0 +1,100 @@
+<story-context id="2-1-create-resume-page-route" v="1.0">
+  <metadata>
+    <epicId>2</epicId>
+    <storyId>2.1</storyId>
+    <title>Create Resume Page Route</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-11-30</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/2-1-create-resume-page-route.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>to access my resume at `/resume`</iWant>
+    <soThat>I can view it before downloading</soThat>
+    <tasks>
+      - Create resume page route (AC: #1, #2)
+      - Configure page metadata (AC: #4, #5)
+      - Implement print mode detection (AC: #6)
+      - Add placeholder content (AC: #1)
+      - Test page functionality
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC1">Given I navigate to `/resume`, when the page loads, then I see the resume preview</criterion>
+    <criterion id="AC2">The page is standalone (no site header/footer)</criterion>
+    <criterion id="AC3">The page has a white background</criterion>
+    <criterion id="AC4">The page title is "Resume - Ali Arghyani"</criterion>
+    <criterion id="AC5">Meta tags are set for SEO (noindex for privacy)</criterion>
+    <criterion id="AC6">Given I add `?print=true` query parameter, when the page loads, then the download button is hidden (for PDF generation)</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Novel Pattern: WYSIWYG PDF Export</section>
+        <snippet>Single component renders both web preview and PDF source. Query Parameter: `?print=true` hides download button in PDF.</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Project Structure</section>
+        <snippet>File: `app/pages/resume.vue` - /resume route (standalone page)</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-2.md</path>
+        <title>Epic Technical Specification: Resume Preview Page</title>
+        <section>AC1: Standalone Resume Route</section>
+        <snippet>Page is standalone (no site header/footer), page title is "Resume - Ali Arghyani", meta tag `<meta name="robots" content="noindex">` is present</snippet>
+      </doc>
+    </docs>
+    <code>
+      <!-- No existing code - this is the first story creating the page -->
+    </code>
+    <dependencies>
+      <node>
+        <package name="nuxt" version="^4.1.3" />
+        <package name="vue" version="^3.5.13" />
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    - Use `definePageMeta({ layout: false })` for standalone page
+    - Use `useHead()` or `useSeoMeta()` for metadata
+    - Use `useRoute().query.print` for print mode detection
+    - File location must be `app/pages/resume.vue` (Nuxt file-based routing)
+    - White background: `bg-white` class
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>useRoute</name>
+      <kind>Nuxt composable</kind>
+      <signature>const route = useRoute(); const isPrintMode = computed(() => route.query.print === 'true')</signature>
+      <path>nuxt/app</path>
+    </interface>
+    <interface>
+      <name>useHead</name>
+      <kind>Nuxt composable</kind>
+      <signature>useHead({ title: string, meta: Array<{ name: string, content: string }> })</signature>
+      <path>nuxt/app</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Nuxt 4 testing with Vitest. Test page routing, metadata, and print mode detection.</standards>
+    <locations>tests/, app/**/*.spec.ts</locations>
+    <ideas>
+      <idea ac="AC1">Navigate to /resume and verify page renders</idea>
+      <idea ac="AC2">Check that no layout is applied (standalone)</idea>
+      <idea ac="AC4">Verify page title in document.title</idea>
+      <idea ac="AC5">Check for noindex meta tag in DOM</idea>
+      <idea ac="AC6">Test with ?print=true parameter and verify isPrintMode is true</idea>
+    </ideas>
+  </tests>
+</story-context>

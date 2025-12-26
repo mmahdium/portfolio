@@ -12,7 +12,8 @@
                   :class="[isActive('hero') ? activeClass : inactiveClass]" variant="soft" square icon="i-twemoji-house"
                   :aria-label="t('nav.home')" @click="goTo('hero')" />
               </UTooltip>
-              <button type="button" class="hidden lg:inline-flex text-sm font-medium transition-colors duration-200"
+              <button type="button"
+                class="hidden lg:inline-flex cursor-pointer text-sm font-medium transition-colors duration-200"
                 :class="[isActive('hero') ? labelActiveClass : labelInactiveClass]" @click="goTo('hero')">
                 {{ t('nav.home') }}
               </button>
@@ -25,7 +26,8 @@
                   :class="[isActive('skills') ? activeClass : inactiveClass]" variant="soft" square
                   icon="i-twemoji-hammer-and-wrench" :aria-label="t('sections.skills')" @click="goTo('skills')" />
               </UTooltip>
-              <button type="button" class="hidden lg:inline-flex text-sm font-medium transition-colors duration-200"
+              <button type="button"
+                class="hidden lg:inline-flex cursor-pointer text-sm font-medium transition-colors duration-200"
                 :class="[isActive('skills') ? labelActiveClass : labelInactiveClass]" @click="goTo('skills')">
                 {{ t('sections.skills') }}
               </button>
@@ -38,7 +40,8 @@
                   :class="[isActive('work') ? activeClass : inactiveClass]" variant="soft" square
                   icon="i-twemoji-briefcase" :aria-label="t('sections.work')" @click="goTo('work')" />
               </UTooltip>
-              <button type="button" class="hidden lg:inline-flex text-sm font-medium transition-colors duration-200"
+              <button type="button"
+                class="hidden lg:inline-flex cursor-pointer text-sm font-medium transition-colors duration-200"
                 :class="[isActive('work') ? labelActiveClass : labelInactiveClass]" @click="goTo('work')">
                 {{ t('sections.work') }}
               </button>
@@ -51,7 +54,8 @@
                   :class="[isActive('projects') ? activeClass : inactiveClass]" variant="soft" square
                   icon="i-twemoji-rocket" :aria-label="t('sections.projects')" @click="goTo('projects')" />
               </UTooltip>
-              <button type="button" class="hidden lg:inline-flex text-sm font-medium transition-colors duration-200"
+              <button type="button"
+                class="hidden lg:inline-flex cursor-pointer text-sm font-medium transition-colors duration-200"
                 :class="[isActive('projects') ? labelActiveClass : labelInactiveClass]" @click="goTo('projects')">
                 {{ t('sections.projects') }}
               </button>
@@ -60,14 +64,15 @@
             <!-- Blog -->
             <div class="flex items-center gap-1.5">
               <UTooltip :text="t('sections.blog')">
-                <NuxtLink :to="localePath('/blog')">
-                  <UButton class="cursor-pointer transition-all duration-200"
-                    :class="[isBlogActive ? activeClass : inactiveClass]" variant="soft" square icon="i-twemoji-memo"
-                    :aria-label="t('sections.blog')" />
-                </NuxtLink>
+              <NuxtLink :to="localePath('/blog')" class="cursor-pointer">
+                <UButton class="cursor-pointer transition-all duration-200"
+                  :class="[isBlogActive ? activeClass : inactiveClass]" variant="soft" square icon="i-twemoji-memo"
+                  :aria-label="t('sections.blog')" />
+              </NuxtLink>
               </UTooltip>
-              <NuxtLink :to="localePath('/blog')">
-                <button type="button" class="hidden lg:inline-flex text-sm font-medium transition-colors duration-200"
+              <NuxtLink :to="localePath('/blog')" class="cursor-pointer">
+                <button type="button"
+                  class="hidden lg:inline-flex cursor-pointer text-sm font-medium transition-colors duration-200"
                   :class="[isBlogActive ? labelActiveClass : labelInactiveClass]">
                   {{ t('sections.blog') }}
                 </button>

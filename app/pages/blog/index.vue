@@ -29,7 +29,7 @@ const { extractUniqueTags, filterPostsBySearch, filterPostsByTag } = useBlog()
 
 // Fetch posts using queryCollection (Nuxt Content v3 API)
 const { data: posts } = await useAsyncData<any[]>(
-  `blog-posts-${locale.value}`,
+  () => `blog-posts-${locale.value}`,
   async () => {
     try {
       // Use queryCollection for Nuxt Content v3

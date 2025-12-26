@@ -32,7 +32,7 @@ const handleImageError = () => {
       </div>
 
       <!-- Title -->
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100 leading-tight">
         {{ post.title }}
       </h1>
 

@@ -1,4 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const isGenerate = process.env.npm_lifecycle_event === "generate";
+
+const prerenderIgnore = ["/_vercel/image"];
+// When generating a static site, we must not ignore internal endpoints/assets that the client fetches at runtime.
+if (!isGenerate)
+  prerenderIgnore.push("/_ipx", "/_nuxt", "/_i18n", "/__nuxt_content");
+
 export default defineNuxtConfig({
   srcDir: "app",
 
@@ -55,31 +62,35 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  devServer: {
+    host: "0.0.0.0",
+    port: 5000,
+  },
   fonts: {
     defaults: {
       preload: true,
-      weights: [300, 400, 500, 600, 700],
+      weights: [300, 400, 500, 600, 700, 800],
       styles: ["normal"],
       subsets: ["latin"],
       fallbacks: {
-        "sans-serif": ["system-ui", "Segoe UI", "sans-serif"],
+        "sans-serif": ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
         serif: ["Georgia", "Times New Roman", "serif"],
       },
     },
     families: [
-      { name: "Fraunces", provider: "google", weights: [600, 700] },
-      { name: "Inter", provider: "google", weights: [400, 500, 600, 700] },
-      {
-        name: "Outfit",
-        provider: "google",
-        weights: [300, 400, 500, 600, 700],
-      },
+      { name: "Geist", provider: "google", weights: [400, 500, 600, 700] },
+      { name: "Space Grotesk", provider: "google", weights: [500, 600, 700] },
+      { name: "DM Sans", provider: "google", weights: [400, 500, 600, 700] },
     ],
   },
 
   runtimeConfig: {
     public: {
-      siteUrl: "https://mahdium.ir", // Used for sitemap and RSS generation
+      loadPlausible: "", // overrided by env,
+      siteName: "AliArghyani",
+      siteUrl: "https://aliarghyani.vercel.app", // Used for sitemap and RSS generation
+      githubToken: "", // GitHub API token - set via NUXT_PUBLIC_GITHUB_TOKEN env variable
     },
   },
 
@@ -134,11 +145,6 @@ export default defineNuxtConfig({
 
   // Nuxt Content configuration
   content: {
-    // Disable experimental features that require native dependencies
-    experimental: {
-      clientDB: false,
-      cacheContents: false,
-    },
     markdown: {
       mdc: true,
       toc: {
@@ -148,7 +154,7 @@ export default defineNuxtConfig({
     },
     documentDriven: false,
     respectPathCase: true,
-  },
+  } as any,
 
   i18n: {
     defaultLocale: "en",
@@ -184,19 +190,32 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/blog", "/fa/blog"],
+      routes: ["/", "/blog", "/fa/blog", "/blog/rss.xml", "/fa/blog/rss.xml"],
       failOnError: false,
-      ignore: ["/_vercel/image"],
+      // Avoid crawling internal endpoints during SSR builds (speeds up builds significantly)
+      ignore: prerenderIgnore,
+    },
+    devProxy: {
+      host: "0.0.0.0",
     },
   },
 
   // Route rules for caching and optimization
   routeRules: {
-    // Blog routes caching
-    "/blog": { swr: 3600 },
-    "/fa/blog": { swr: 3600 },
-    "/blog/**": { swr: 3600 },
-    "/fa/blog/**": { swr: 3600 },
+    // IMPORTANT:
+    // Do NOT cache HTML pages for blog routes on Vercel/CDNs.
+    // Caching `/blog` or `/blog/<slug>` can serve stale HTML that references old `/_nuxt/*.js` chunks,
+    // causing client-side navigation to intermittently 404 until a refresh loads the new HTML.
+    "/blog": { headers: { "cache-control": "no-store" } },
+    "/fa/blog": { headers: { "cache-control": "no-store" } },
+    "/blog/**": { headers: { "cache-control": "no-store" } },
+    "/fa/blog/**": { headers: { "cache-control": "no-store" } },
+
+    // These endpoints are safe to cache: they are versioned via query params/build ids.
+    "/blog/_payload.json": { swr: 3600 },
+    "/fa/blog/_payload.json": { swr: 3600 },
+    "/blog/rss.xml": { swr: 3600 },
+    "/fa/blog/rss.xml": { swr: 3600 },
   },
 
   // devtools: { enabled: false },

@@ -1,0 +1,108 @@
+<story-context id="2-5-create-download-button-component" v="1.0">
+  <metadata>
+    <epicId>2</epicId>
+    <storyId>2.5</storyId>
+    <title>Create Download Button Component</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-11-30</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/2-5-create-download-button-component.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>a prominent download button</iWant>
+    <soThat>I can easily download my resume as PDF</soThat>
+    <tasks>
+      - Create ResumeDownloadButton component
+      - Implement print mode detection
+      - Add placeholder click handler
+      - Integrate into resume page
+      - Test button functionality
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC1">Button is a floating action button (FAB) in bottom-right corner</criterion>
+    <criterion id="AC2">Has download icon (i-heroicons-arrow-down-tray)</criterion>
+    <criterion id="AC3">Has "Download PDF" text (or just icon on mobile)</criterion>
+    <criterion id="AC4">Has blue background color</criterion>
+    <criterion id="AC5">Has fixed position (doesn't scroll)</criterion>
+    <criterion id="AC6">Has shadow for elevation</criterion>
+    <criterion id="AC7">Has the `.no-print` class (hidden in PDF)</criterion>
+    <criterion id="AC8">Button is not visible when `?print=true` parameter is present</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Novel Pattern: WYSIWYG PDF Export</section>
+        <snippet>Query Parameter: `?print=true` hides download button for PDF generation.</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-2.md</path>
+        <title>Epic Technical Specification: Resume Preview Page</title>
+        <section>AC12: Download Button</section>
+        <snippet>Floating action button in bottom-right corner with download icon, blue background, fixed position, shadow, and .no-print class.</snippet>
+      </doc>
+    </docs>
+    <code>
+      <artifact>
+        <path>app/pages/resume.vue</path>
+        <kind>page</kind>
+        <symbol>resume page</symbol>
+        <reason>Will import and render this button component, provides isPrintMode prop</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <node>
+        <package name="@nuxt/ui" version="^4.0.x" />
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    - Use Nuxt UI UButton component
+    - Icon: i-heroicons-arrow-down-tray
+    - Position: fixed bottom-6 right-6
+    - Color: primary (blue)
+    - Size: lg
+    - Shadow: shadow-lg
+    - Z-index: z-50 (above all content)
+    - Responsive: Hide text on mobile with "hidden sm:inline"
+    - Print: .no-print class and v-if="!isPrintMode"
+    - File location: app/components/resume/ResumeDownloadButton.vue
+    - Click handler: Placeholder console.log (Epic 3 will implement actual PDF download)
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>ResumeDownloadButton Props</name>
+      <kind>Vue component props</kind>
+      <signature>interface Props { isPrintMode?: boolean }</signature>
+      <path>app/components/resume/ResumeDownloadButton.vue</path>
+    </interface>
+    <interface>
+      <name>UButton</name>
+      <kind>Nuxt UI component</kind>
+      <signature>&lt;UButton icon="..." size="..." color="..." class="..." @click="..." /&gt;</signature>
+      <path>@nuxt/ui</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Vue component testing with Vitest. Test visibility, positioning, and click handler.</standards>
+    <locations>app/components/**/*.spec.ts</locations>
+    <ideas>
+      <idea ac="AC1">Mount component, verify fixed positioning and bottom-right placement</idea>
+      <idea ac="AC2">Check icon prop is set correctly</idea>
+      <idea ac="AC4">Verify blue background color</idea>
+      <idea ac="AC5">Check fixed position class</idea>
+      <idea ac="AC6">Verify shadow class applied</idea>
+      <idea ac="AC7">Check .no-print class exists</idea>
+      <idea ac="AC8">Mount with isPrintMode=true, verify button not rendered</idea>
+    </ideas>
+  </tests>
+</story-context>

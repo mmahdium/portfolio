@@ -1,15 +1,17 @@
+import { queryCollection } from '@nuxt/content/server'
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const siteUrl = config.public.siteUrl || 'https://example.com'
 
-  // Detect locale from path
   const locale = 'en'
 
-  // Fetch published blog posts
-  const posts = await serverQueryContent(event, `${locale}/blog`)
-    .where({ draft: { $ne: true } })
-    .sort({ date: -1 })
-    .find()
+  // In Nitro server routes, `queryCollection` expects the H3 event as the first argument.
+  const allPosts = await queryCollection(event, 'blog').all()
+
+  const posts = allPosts
+    .filter((post: any) => post.path?.startsWith('/en/blog/') && post.draft !== true)
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const escapeXml = (str: string) => {
     return str
@@ -22,7 +24,8 @@ export default defineEventHandler(async (event) => {
 
   const rssItems = posts
     .map((post) => {
-      const link = `${siteUrl}${post._path}`
+      const routePath = post.path?.replace(/^\/en/, '') || ''
+      const link = `${siteUrl}${routePath}`
       const pubDate = new Date(post.date).toUTCString()
 
       return `

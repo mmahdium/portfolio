@@ -1,9 +1,11 @@
 {
   "sections": {
     "work": "سوابق کاری",
+    "workAccordion": "بیش از ۷ سال تجربه در توسعه راهکارهای سازمانی و اپلیکیشن‌های وب.",
     "education": "تحصیلات",
     "recommendations": "توصیه‌نامه‌ها",
     "projects": "پروژه‌ها",
+    "projectsAccordion": "اپلیکیشن‌های واقعی ساخته شده برای مشتریان و جامعه توسعه‌دهندگان.",
     "blog": "وبلاگ",
     "contact": "ارتباط",
     "mainTools": "ابزارهای اصلی",
@@ -11,13 +13,17 @@
     "values": "ارزش‌ها",
     "skills": "مهارت‌ها",
     "softSkills": "ارزش‌ها و مهارت‌های نرم",
-    "language": "مهارت‌های زبانی"
+    "language": "مهارت‌های زبانی",
+    "githubActivity": "فعالیت گیت‌هاب"
   },
   "skills": {
     "expert": "حرفه‌ای",
     "proficient": "مسلط",
     "usedBefore": "تجربه قبلی",
     "aiStack": "استک هوش مصنوعی"
+  },
+  "softSkillsAccordion": {
+    "label": "ذهنیت و توانمندی‌های بین‌فردی که موفقیت تیم را رقم می‌زنند."
   },
   "softSkills": {
     "problemSolving": {
@@ -82,7 +88,10 @@
     "noResults": "نتیجه‌ای یافت نشد",
     "copyCode": "کپی کد",
     "codeCopied": "کپی شد!",
-    "subscribe": "اشتراک از طریق RSS"
+    "subscribe": "اشتراک از طریق RSS",
+    "sharePost": "اشتراک‌گذاری این مقاله",
+    "linkCopied": "لینک کپی شد!",
+    "copyFailed": "کپی لینک ناموفق بود"
   },
   "common": {
     "present": "اکنون",
@@ -139,7 +148,9 @@
     }
   },
   "hero": {
-    "currently": "در حال حاضر در"
+    "currently": "در حال حاضر در",
+    "viewResume": "مشاهده رزومه",
+    "downloadPdf": "دانلود PDF"
   },
   "toasts": {
     "emailCopied": {
@@ -185,5 +196,12 @@
     "current": "جاری",
     "freelance": "پروژه‌های فریلنسری",
     "public": "پروژه‌های عمومی"
+  },
+  "portfolio": {
+    "githubActivity": {
+      "title": "فعالیت گیت‌هاب",
+      "subtitle": "مشارکت‌های من در سال گذشته",
+      "error": "خطا در بارگذاری مشارکت‌های گیت‌هاب"
+    }
   }
 }

@@ -18,6 +18,7 @@
             <div class="flex items-center gap-2">
               <UTooltip :text="t('theme.mode.system')">
                 <UButton :color="isModeActive('system') ? 'primary' : 'neutral'" variant="soft" size="sm" square
+                  class="cursor-pointer"
                   :class="isModeActive('system') ? 'ring-1 ring-primary-400/40 bg-primary-500/10 dark:bg-primary-400/10' : ''"
                   icon="i-twemoji-desktop-computer" :aria-label="t('theme.mode.system')"
                   @click="setMode($event, 'system')" />
@@ -25,12 +26,14 @@
 
               <UTooltip :text="t('theme.mode.light')">
                 <UButton :color="isModeActive('light') ? 'primary' : 'neutral'" variant="soft" size="sm" square
+                  class="cursor-pointer"
                   :class="isModeActive('light') ? 'ring-1 ring-primary-400/40 bg-primary-500/10 dark:bg-primary-400/10' : ''"
                   icon="i-twemoji-sun" :aria-label="t('theme.mode.light')" @click="setMode($event, 'light')" />
               </UTooltip>
 
               <UTooltip :text="t('theme.mode.dark')">
                 <UButton :color="isModeActive('dark') ? 'primary' : 'neutral'" variant="soft" size="sm" square
+                  class="cursor-pointer"
                   :class="isModeActive('dark') ? 'ring-1 ring-primary-400/40 bg-primary-500/10 dark:bg-primary-400/10' : ''"
                   icon="i-twemoji-crescent-moon" :aria-label="t('theme.mode.dark')" @click="setMode($event, 'dark')" />
               </UTooltip>
@@ -44,7 +47,7 @@
             <div class="grid grid-cols-3 gap-2">
               <UButton v-for="p in primaryItems" :key="p.key" :color="isPrimaryActive(p.key) ? 'primary' : 'neutral'"
                 variant="soft" size="sm"
-                :class="['justify-start', isPrimaryActive(p.key) ? 'ring-1 ring-primary-400/40 bg-primary-500/10 dark:bg-primary-400/10' : '']"
+                :class="['cursor-pointer justify-start', isPrimaryActive(p.key) ? 'ring-1 ring-primary-400/40 bg-primary-500/10 dark:bg-primary-400/10' : '']"
                 :aria-label="`Primary: ${p.label}`" @click="setPrimary($event, p.key)">
                 <span class="inline-flex items-center gap-2">
                   <span class="size-3 rounded-full" :class="colorClassMap[p.key]" />

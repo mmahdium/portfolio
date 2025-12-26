@@ -10,23 +10,45 @@
             {{ portfolio.profile.summary }}
           </p>
           <div v-if="portfolio.profile.location || currentRole"
-            class="mb-6 flex flex-col items-center gap-2 text-sm text-gray-600 dark:text-gray-300 sm:items-start">
+            class="mb-6 flex flex-col items-center gap-3 text-sm text-gray-600 dark:text-gray-300 sm:items-start">
             <div v-if="portfolio.profile.location" class="flex items-center gap-2">
               <UIcon name="i-twemoji-round-pushpin" class="text-base text-primary-600 me-1 dark:text-primary-300" />
               <span class="leading-relaxed">{{ portfolio.profile.location }}</span>
             </div>
-            <div v-if="currentRole" class="flex items-center gap-1 text-base text-gray-700 dark:text-gray-200">
-              <img v-if="currentRole.companyLogo" :src="currentRole.companyLogo" :alt="`${currentRole.company} logo`"
-                class="h-7 w-7 rounded-md object-contain" loading="lazy" />
-              <span class="">{{ t('hero.currently') }}</span>
-              <span class="font-semibold text-primary-600 dark:text-primary-300">
-                <a v-if="currentRole.companyLink" :href="currentRole.companyLink" target="_blank" rel="noopener"
-                  class="hover:underline text-primary-600 dark:text-primary-300">
-                  {{ currentRole.company }}
-                </a>
-                <span v-else>{{ currentRole.company }}</span>
-              </span>
+            <div v-if="currentRole"
+              class="flex flex-col sm:flex-row items-center justify-center sm:justify-between w-full gap-2 text-base text-gray-700 dark:text-gray-200 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1">
+                <img v-if="currentRole.companyLogo" :src="currentRole.companyLogo" :alt="`${currentRole.company} logo`"
+                  class="h-7 w-7 rounded-md object-contain" loading="lazy" />
+                <span class="">{{ t('hero.currently') }}</span>
+                <span class="font-semibold company-name">
+                  <a v-if="currentRole.companyLink" :href="currentRole.companyLink" target="_blank" rel="noopener"
+                    class="hover:underline company-name">
+                    {{ currentRole.company }}
+                  </a>
+                  <span v-else>{{ currentRole.company }}</span>
+                </span>
+              </div>
+              <!-- Resume Button - Desktop only -->
+              <NuxtLink to="/resume" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold
+                  resume-button
+                  text-white rounded-full
+                  transition-all duration-300 hover:scale-105
+                  animate-pulse hover:animate-none">
+                <UIcon name="i-heroicons-document-text" class="text-lg" />
+                <span>View Resume</span>
+                <UIcon name="i-heroicons-sparkles" class="text-sm opacity-80" />
+              </NuxtLink>
             </div>
+            <!-- Resume Button - Mobile only -->
+            <NuxtLink to="/resume" class="sm:hidden inline-flex items-center justify-center gap-2 mt-2 px-4 py-2 text-sm font-medium
+                resume-button
+                text-white rounded-full
+                transition-all duration-300 hover:scale-105">
+              <UIcon name="i-heroicons-document-text" class="text-base" />
+              <span>View My Resume</span>
+              <UIcon name="i-heroicons-arrow-right" class="text-sm" />
+            </NuxtLink>
           </div>
           <div class="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
             <ClientTooltip :text="emailTooltip">
@@ -187,3 +209,52 @@ async function copyEmail() {
   }
 }
 </script>
+
+<style>
+.company-name {
+  color: var(--ui-color-primary-600);
+}
+
+.dark .company-name {
+  color: var(--ui-color-primary-300);
+}
+
+/* Resume button with primary color gradient */
+.resume-button {
+  background: linear-gradient(to right,
+      var(--ui-color-primary-600),
+      var(--ui-color-primary-500),
+      var(--ui-color-primary-400));
+  box-shadow: 0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 25%, transparent);
+}
+
+.resume-button:hover {
+  background: linear-gradient(to right,
+      var(--ui-color-primary-700),
+      var(--ui-color-primary-600),
+      var(--ui-color-primary-500));
+  box-shadow: 0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 40%, transparent);
+}
+
+/* Override Tailwind ring color variable for chip buttons */
+:deep(.chip-button) {
+  --tw-ring-color: var(--ui-color-primary-500) !important;
+}
+
+:deep(.dark .chip-button) {
+  --tw-ring-color: var(--ui-color-primary-400) !important;
+}
+
+/* Also override on hover and focus states */
+:deep(.chip-button:hover),
+:deep(.chip-button:focus),
+:deep(.chip-button:focus-visible) {
+  --tw-ring-color: var(--ui-color-primary-500) !important;
+}
+
+:deep(.dark .chip-button:hover),
+:deep(.dark .chip-button:focus),
+:deep(.dark .chip-button:focus-visible) {
+  --tw-ring-color: var(--ui-color-primary-400) !important;
+}
+</style>

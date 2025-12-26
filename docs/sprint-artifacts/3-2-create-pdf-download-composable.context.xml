@@ -1,0 +1,134 @@
+<story-context id="3-2-create-pdf-download-composable" v="1.0">
+  <metadata>
+    <epicId>3</epicId>
+    <storyId>3.2</storyId>
+    <title>Create PDF Download Composable</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-12-01</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/3-2-create-pdf-download-composable.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>developer</asA>
+    <iWant>a composable that handles PDF download logic</iWant>
+    <soThat>the download button can trigger downloads easily</soThat>
+    <tasks>
+      - Create composable file at app/composables/useResumePdf.ts
+      - Implement download logic with blob handling
+      - Add error handling with toast notifications
+      - Test composable functionality
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC1">Given I call downloadPdf() from the composable, when the function executes, then it fetches /api/resume/pdf as blob</criterion>
+    <criterion id="AC2">The composable creates object URL from blob and triggers browser download</criterion>
+    <criterion id="AC3">Download filename is from getPdfFilename() (e.g., "Ali_Arghyani_Resume.pdf")</criterion>
+    <criterion id="AC4">The composable returns isGenerating: Ref&lt;boolean&gt; for loading state</criterion>
+    <criterion id="AC5">The composable returns downloadPdf: () => Promise&lt;void&gt; function</criterion>
+    <criterion id="AC6">Given an error occurs, when caught, then it shows toast notification with error message</criterion>
+    <criterion id="AC7">After error, isGenerating is set back to false</criterion>
+    <criterion id="AC8">Object URL is revoked after download to prevent memory leaks</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Error Handling</section>
+        <snippet>Composable pattern with isGenerating ref, try-catch, toast notifications, and finally block for cleanup</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-3.md</path>
+        <title>Epic Technical Specification: PDF Export</title>
+        <section>Workflows and Sequencing</section>
+        <snippet>useResumePdf.ts: Set isGenerating true, fetch blob, create object URL, trigger download, revoke URL, set isGenerating false</snippet>
+      </doc>
+    </docs>
+    <code>
+      <file>
+        <path>app/composables/useResumeData.ts</path>
+        <description>Existing composable that provides getPdfFilename() helper</description>
+        <relevantSymbols>getPdfFilename(): string</relevantSymbols>
+        <snippet>
+function getPdfFilename(): string {
+  const name = resumeData.basics.name
+  const filename = name.replace(/\s+/g, '_')
+  return `${filename}_Resume.pdf`
+}
+        </snippet>
+      </file>
+      <file>
+        <path>server/api/resume/pdf.get.ts</path>
+        <description>API endpoint that returns PDF blob (Story 3.1)</description>
+        <relevantSymbols>GET /api/resume/pdf</relevantSymbols>
+      </file>
+    </code>
+    <dependencies>
+      <node>
+        <package name="@nuxt/ui" version="^4.0.x" note="useToast() for notifications" />
+        <package name="nuxt" version="^4.1.3" note="$fetch for API calls" />
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    - File location must be app/composables/useResumePdf.ts
+    - Must use $fetch with responseType: 'blob'
+    - Must use useToast() from Nuxt UI for error notifications
+    - Must use getPdfFilename() from useResumeData() for filename
+    - Must revoke object URL after download to prevent memory leaks
+    - Must set isGenerating = false in finally block (not just catch)
+    - Must handle both success and error cases
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>useResumePdf</name>
+      <kind>Vue composable</kind>
+      <signature>function useResumePdf(): { isGenerating: Ref&lt;boolean&gt;, downloadPdf: () => Promise&lt;void&gt; }</signature>
+      <path>app/composables/useResumePdf.ts</path>
+    </interface>
+    <interface>
+      <name>$fetch</name>
+      <kind>Nuxt utility</kind>
+      <signature>$fetch&lt;T&gt;(url: string, options?: { responseType: 'blob' }): Promise&lt;T&gt;</signature>
+      <path>nuxt/app</path>
+    </interface>
+    <interface>
+      <name>useToast</name>
+      <kind>Nuxt UI composable</kind>
+      <signature>useToast(): { add: (options: ToastOptions) => void }</signature>
+      <path>@nuxt/ui</path>
+    </interface>
+    <interface>
+      <name>URL.createObjectURL</name>
+      <kind>Web API</kind>
+      <signature>URL.createObjectURL(blob: Blob): string</signature>
+      <path>global</path>
+    </interface>
+    <interface>
+      <name>URL.revokeObjectURL</name>
+      <kind>Web API</kind>
+      <signature>URL.revokeObjectURL(url: string): void</signature>
+      <path>global</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Vue composable testing with Vitest. Mock $fetch and useToast.</standards>
+    <locations>app/composables/**/*.spec.ts, tests/</locations>
+    <ideas>
+      <idea ac="AC1">Mock $fetch, call downloadPdf(), verify fetch called with correct URL and responseType</idea>
+      <idea ac="AC2">Verify URL.createObjectURL called with blob, anchor element created and clicked</idea>
+      <idea ac="AC3">Verify anchor download attribute matches getPdfFilename() output</idea>
+      <idea ac="AC4">Verify isGenerating.value is Ref&lt;boolean&gt; and starts as false</idea>
+      <idea ac="AC5">Verify downloadPdf is async function returning Promise&lt;void&gt;</idea>
+      <idea ac="AC6">Mock $fetch to throw, verify toast.add called with error message</idea>
+      <idea ac="AC7">Mock $fetch to throw, verify isGenerating.value is false after error</idea>
+      <idea ac="AC8">Verify URL.revokeObjectURL called after download</idea>
+    </ideas>
+  </tests>
+</story-context>

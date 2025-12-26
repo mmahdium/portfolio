@@ -26,6 +26,12 @@ const shouldShowToc = computed(() => {
   return countLinks(props.toc.links) >= 3
 })
 
+const setHashWithoutNavigation = (id: string) => {
+  const url = new URL(window.location.href)
+  url.hash = id
+  window.history.replaceState(window.history.state, '', url.toString())
+}
+
 // Smooth scroll to heading with offset for sticky header
 const scrollToHeading = (id: string) => {
   const element = document.getElementById(id)
@@ -40,11 +46,28 @@ const scrollToHeading = (id: string) => {
     })
 
     activeId.value = id
+    setHashWithoutNavigation(id)
   }
 }
 
 // Track active section with IntersectionObserver
 onMounted(() => {
+  // Handle initial hash (avoid full page navigation / transition)
+  const initialId = window.location.hash.replace(/^#/, '')
+  if (initialId) {
+    setTimeout(() => {
+      const el = document.getElementById(initialId)
+      if (!el) return
+
+      const offset = 100
+      const elementPosition = el.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({ top: offsetPosition, behavior: 'auto' })
+      activeId.value = initialId
+    }, 0)
+  }
+
   const headings = document.querySelectorAll('article h2, article h3, article h4')
 
   const observer = new IntersectionObserver(

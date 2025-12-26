@@ -1,7 +1,9 @@
 <template>
-  <div class="layout-default">
-    <TopNav client:only />
-    <slot />
+  <div class="layout-default" :key="layoutKey">
+    <TopNav />
+    <main>
+      <slot />
+    </main>
     <FooterCopyright />
   </div>
 </template>
@@ -16,6 +18,11 @@ import FooterCopyright from '@/components/common/FooterCopyright.vue'
  * Main layout for the application including TopNav and Footer.
  * This layout is used by default for all pages unless specified otherwise.
  */
+
+const route = useRoute()
+
+// Force re-render when navigating back from pages with layout: false
+const layoutKey = computed(() => route.fullPath)
 </script>
 
 <style scoped>

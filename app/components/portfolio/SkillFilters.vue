@@ -1,9 +1,9 @@
 <template>
   <div
-    class="ms-auto w-full md:w-auto flex flex-row-reverse items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap px-1 py-1"
+    class="ms-auto flex flex-row-reverse items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap px-1 py-1 min-w-0"
     role="toolbar" aria-label="Skill filters">
     <UButton :icon="filterButtonIcon" size="xs" :variant="filterButtonVariant" :color="filterButtonColor"
-      class="filter-toggle rounded-full shrink-0 mx-1"
+      class="filter-toggle cursor-pointer rounded-full shrink-0 mx-1"
       :class="{ 'is-open': filtersOpen, 'has-selection': hasSelection }" :aria-label="filterButtonLabel"
       :aria-expanded="hasSelection ? undefined : filtersOpen" aria-controls="skill-filter-group"
       @click="handlePrimaryAction" />
@@ -15,7 +15,7 @@
             <UTooltip :text="meta(type).label" :arrow="true" :delay-duration="0.5"
               :content="{ side: 'bottom', sideOffset: 8, collisionPadding: 12 }">
               <UButton :icon="meta(type).icon" size="xs" :variant="isSelected(type) ? 'solid' : 'soft'" color="primary"
-                class="rounded-full shrink-0" :aria-pressed="isSelected(type)"
+                class="cursor-pointer rounded-full shrink-0" :aria-pressed="isSelected(type)"
                 :aria-label="`Filter by ${meta(type).label}`" :title="meta(type).label" @click="toggle(type)" />
             </UTooltip>
           </div>

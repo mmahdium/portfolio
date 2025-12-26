@@ -5,6 +5,7 @@
 @import "./transitions.css";
 @import "./prose.css";
 @import "./blog-content.css";
+@import "./resume-button.css";
 
 @source "../../components/**/*.{vue,js,ts}";
 @source "../../layouts/**/*.vue";
@@ -18,8 +19,8 @@
 @source "../../../content/**/*.{md,json,yaml,yml}";
 
 @theme {
-  --font-sans: 'Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif';
-  --font-display: 'Fraunces', 'Roobert', 'Inter', 'serif';
+  --font-sans: 'Geist', 'DM Sans', '-apple-system', 'ui-sans-serif', 'system-ui', 'sans-serif';
+  --font-display: 'Space Grotesk', 'Geist', 'ui-sans-serif', 'sans-serif';
 }
 
 @layer base {
@@ -64,7 +65,8 @@
   html {
     overflow-y: scroll;
     /* Avoid width variation */
-    scroll-padding-top: 2rem; /* Offset for fixed navbar when using anchor links */
+    scroll-padding-top: 2rem;
+    /* Offset for fixed navbar when using anchor links */
   }
 
   html,
@@ -72,8 +74,18 @@
   #__nuxt,
   #__layout {
     @apply min-h-screen w-full;
-    background-color: #f2f5f9;
+    background: linear-gradient(135deg, #f8f9fc 0%, #faf5ff 50%, #fdf4ff 100%);
     color-scheme: light;
+  }
+
+  @media print {
+    html,
+    body,
+    #__nuxt,
+    #__layout {
+      background: white !important;
+      min-height: auto !important;
+    }
   }
 
   .dark html,
@@ -89,8 +101,20 @@
   html.dark body,
   html.dark #__nuxt,
   html.dark #__layout {
-    background-color: #0b1220;
+    background: linear-gradient(135deg, #0a0a0f 0%, #18181b 50%, #1c1425 100%);
     color-scheme: dark;
+  }
+
+  @media print {
+    :root.dark #__nuxt,
+    :root.dark #__layout,
+    html.dark,
+    html.dark body,
+    html.dark #__nuxt,
+    html.dark #__layout {
+      background: white !important;
+      color-scheme: light !important;
+    }
   }
 
   div,
@@ -110,11 +134,64 @@
     font-family: var(--font-sans);
   }
 
+  :root {
+    --scrollbar-track: color-mix(in srgb, var(--ui-color-primary-100) 35%, transparent);
+    --scrollbar-thumb: color-mix(in srgb, var(--ui-color-primary-500) 65%, var(--ui-color-primary-600) 35%);
+    --scrollbar-thumb-hover: color-mix(in srgb, var(--ui-color-primary-500) 80%, var(--ui-color-primary-400) 20%);
+  }
+
+  :root.dark {
+    --scrollbar-track: color-mix(in srgb, #0b1020 80%, var(--ui-color-primary-500) 20%);
+    --scrollbar-thumb: color-mix(in srgb, var(--ui-color-primary-400) 65%, var(--ui-color-primary-500) 35%);
+    --scrollbar-thumb-hover: color-mix(in srgb, var(--ui-color-primary-300) 75%, var(--ui-color-primary-400) 25%);
+  }
+
+  /* Global scrollbar styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--scrollbar-thumb), color-mix(in oklch, var(--scrollbar-thumb), black 10%));
+    border-radius: 9999px;
+    border: 2px solid color-mix(in oklch, var(--scrollbar-track), transparent 50%);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
   /* In Persian/RTL, prefer Vazirmatn for both body and headings via variables */
   html[dir="rtl"],
   html[lang^="fa"] {
-    --font-sans: 'Vazirmatn', 'Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif';
-    --font-display: 'Vazirmatn', 'Roobert', 'Inter', 'serif';
+    --font-sans: 'Vazirmatn', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif';
+    --font-display: 'Vazirmatn', 'Space Grotesk', 'ui-sans-serif', 'sans-serif';
+  }
+
+  /* Hide promotional banners from @nuxt/ui and certificates.dev */
+  [class*="VueSchool"],
+  [class*="banner"][class*="promotional"],
+  [data-v-inspector*="VueSchool"],
+  #bb-banner,
+  [id^="bb-"],
+  [class*="bb-campaign"],
+  [class*="bb-close"],
+  a[href*="certificates.dev"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
   }
 }
 
@@ -123,42 +200,144 @@
   h1,
   h2,
   h3 {
-    @apply font-display tracking-tight;
+    @apply font-display tracking-tight font-bold;
+    background: linear-gradient(135deg, currentColor 0%, color-mix(in oklch, currentColor, var(--ui-color-primary-500) 30%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   h1 {
-    @apply text-3xl sm:text-4xl;
+    @apply text-4xl sm:text-5xl lg:text-6xl;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    @apply text-2xl sm:text-3xl;
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+    letter-spacing: -0.01em;
   }
 
   h3 {
-    @apply text-xl sm:text-2xl;
+    @apply text-2xl sm:text-3xl lg:text-4xl;
   }
 }
 
 @layer utilities {
+  /**
+   * THEME COLOR USAGE GUIDE
+   * 
+   * Always use Nuxt UI CSS variables for primary colors:
+   * - var(--ui-color-primary-500) for main primary color
+   * - var(--ui-color-primary-400) for lighter shade
+   * - var(--ui-color-primary-600) for darker shade
+   * 
+   * Or use semantic Tailwind classes:
+   * - text-primary, bg-primary, border-primary
+   * 
+   * Never use hardcoded colors like:
+   * - purple-500, violet-600, #a855f7
+   * 
+   * For gradients, use CSS variables:
+   * background: linear-gradient(to right, 
+   *   var(--ui-color-primary-600),
+   *   var(--ui-color-primary-500)
+   * );
+   * 
+   * See docs/THEME-COLOR-GUIDE.md for detailed documentation.
+   */
+
   .primary-text {
-    @apply text-primary-500 dark:text-primary-400;
+    @apply text-primary;
+  }
+
+  .section-spacing {
+    @apply pt-5 pb-8 sm:pt-8 sm:pb-12;
+  }
+
+  .section-title {
+    @apply text-xl sm:text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100;
+  }
+
+  .section-header {
+    @apply flex flex-wrap items-center gap-3 mb-5 sm:mb-6;
   }
 
   .primary-text-muted {
-    @apply text-slate-500 dark:text-slate-400;
+    @apply text-zinc-500 dark:text-zinc-400;
   }
 
   .decorated {
-    @apply underline underline-offset-8 decoration-primary-500 dark:decoration-primary-400;
+    @apply underline underline-offset-8 decoration-primary decoration-2;
   }
 
   /* Soft text color helpers */
   .muted {
-    @apply text-slate-600 dark:text-slate-300;
+    @apply text-zinc-600 dark:text-zinc-300;
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      to right,
+      var(--ui-color-primary-600),
+      var(--ui-color-primary-500),
+      var(--ui-color-primary-400)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark .gradient-text {
+    background: linear-gradient(
+      to right,
+      var(--ui-color-primary-400),
+      var(--ui-color-primary-300),
+      var(--ui-color-primary-200)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   .chip-base {
-    @apply inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs font-medium ring-1 ring-slate-200/70 bg-white/70 text-slate-700 shadow-sm backdrop-blur-sm dark:bg-white/5 dark:text-slate-300 dark:ring-slate-700/50;
+    @apply inline-flex items-center gap-1.5 rounded-2xl px-3 py-1.5 text-xs font-semibold ring-2 transition-all hover:scale-105 hover:shadow-xl backdrop-blur-md;
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-400) 60%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, white 75%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-100) 80%, transparent)
+    );
+    color: var(--ui-color-primary-700);
+    box-shadow: 
+      0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 15%, transparent),
+      0 4px 6px -2px color-mix(in oklch, var(--ui-color-primary-500) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--ui-color-primary-300) 40%, transparent);
+  }
+
+  .chip-base:hover {
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-500) 70%, transparent);
+    box-shadow: 
+      0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 25%, transparent),
+      0 8px 10px -6px color-mix(in oklch, var(--ui-color-primary-500) 20%, transparent);
+  }
+
+  .dark .chip-base {
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-600) 50%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, var(--ui-color-primary-950) 60%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-900) 40%, transparent)
+    );
+    color: var(--ui-color-primary-200);
+    box-shadow: 
+      0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 10%, transparent),
+      0 4px 6px -2px color-mix(in oklch, var(--ui-color-primary-500) 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--ui-color-primary-700) 40%, transparent);
+  }
+
+  .dark .chip-base:hover {
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-500) 60%, transparent);
+    box-shadow: 
+      0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 15%, transparent),
+      0 8px 10px -6px color-mix(in oklch, var(--ui-color-primary-500) 12%, transparent);
   }
 
   /* Hide scrollbars for overflow containers */
@@ -181,15 +360,61 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Global hover utilities for consistent interactions */
+  .glass-card {
+    @apply rounded-3xl bg-white/80 dark:bg-zinc-900/50 backdrop-blur-xl border border-white/20 dark:border-zinc-800/50 transition-all duration-300;
+    box-shadow: 0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 5%, transparent);
+  }
+
+  .dark .glass-card {
+    box-shadow: 0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 10%, transparent);
+  }
+
+  .glass-card:hover {
+    @apply translate-y-[-2px];
+    box-shadow: 
+      0 25px 50px -12px color-mix(in srgb, var(--ui-color-primary-500) 10%, transparent);
+  }
+  
+  .dark .glass-card:hover {
+    box-shadow: 
+      0 25px 50px -12px color-mix(in srgb, var(--ui-color-primary-500) 20%, transparent);
+  }
+
+  /* Global hover utilities for consistent interactions - using dynamic theme colors */
   .hover-ring-tint {
-    /* Ring-only hover with subtle background tint; no scale; focus-visible support */
-    @apply transition-colors duration-200 ease-out ring-0 hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-primary-50/60 dark:hover:bg-primary-400/10 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900;
+    @apply transition-all duration-300 ease-out focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-900;
+  }
+  
+  .hover-ring-tint:hover {
+    box-shadow: 0 0 0 2px var(--ui-color-primary-500);
+    background-color: color-mix(in srgb, var(--ui-color-primary-50) 60%, transparent);
+  }
+  
+  .dark .hover-ring-tint:hover {
+    box-shadow: 0 0 0 2px var(--ui-color-primary-400);
+    background-color: color-mix(in srgb, var(--ui-color-primary-400) 10%, transparent);
+  }
+  
+  .hover-ring-tint:focus-visible {
+    box-shadow: 0 0 0 2px var(--ui-color-primary-500);
+  }
+  
+  .dark .hover-ring-tint:focus-visible {
+    box-shadow: 0 0 0 2px var(--ui-color-primary-400);
   }
 
   .link-hover-clean {
-    /* Clean link hover with color shift and underline */
-    @apply transition-colors duration-200 hover:text-primary-600 dark:hover:text-primary-400 hover:underline underline-offset-4 decoration-primary-500/60 dark:decoration-primary-400/60;
+    @apply transition-all duration-300 hover:underline underline-offset-4;
+  }
+  
+  .link-hover-clean:hover {
+    color: var(--ui-color-primary-600);
+    text-decoration-color: color-mix(in srgb, var(--ui-color-primary-500) 60%, transparent);
+  }
+  
+  .dark .link-hover-clean:hover {
+    color: var(--ui-color-primary-400);
+    text-decoration-color: color-mix(in srgb, var(--ui-color-primary-400) 60%, transparent);
   }
 }
 
@@ -197,23 +422,142 @@
 
   /* Minimal hover: subtle bg tint, slight shadow, no ring/border change */
   .hover-minimal {
-    @apply transition-all duration-150 ease-out hover:bg-gray-100/70 dark:hover:bg-white/5 hover:shadow-sm;
+    @apply transition-all duration-300 ease-out dark:hover:bg-white/5 hover:shadow-lg;
+  }
+  
+  .hover-minimal:hover {
+    background-color: color-mix(in srgb, var(--ui-color-primary-50) 50%, transparent);
+    box-shadow: 0 10px 15px -3px color-mix(in srgb, var(--ui-color-primary-500) 5%, transparent);
+  }
+
+  .btn-modern {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold text-white transition-all duration-300 hover:scale-105;
+    background: linear-gradient(to right, var(--ui-color-primary-600), var(--ui-color-primary-500));
+    box-shadow: 0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 30%, transparent);
+  }
+
+  .btn-modern:hover {
+    background: linear-gradient(to right, var(--ui-color-primary-700), var(--ui-color-primary-600));
+    box-shadow: 0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 40%, transparent);
   }
 }
 
 @layer utilities {
 
-  /* Minimal outlined button: persistent subtle border and light background; hover handled separately */
   .btn-outline-minimal {
-    @apply border border-gray-300/60 dark:border-gray-600/50 bg-gray-100/30 dark:bg-white/5;
+    @apply backdrop-blur-sm transition-all duration-300 hover:shadow-lg;
+    border: 1px solid color-mix(in oklch, var(--ui-color-primary-200) 60%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, white 60%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-50) 30%, transparent)
+    );
+  }
+
+  .btn-outline-minimal:hover {
+    box-shadow: 0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 10%, transparent);
+  }
+
+  .dark .btn-outline-minimal {
+    border-color: color-mix(in oklch, var(--ui-color-primary-800) 50%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, white 5%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-950) 20%, transparent)
+    );
   }
 }
 
 @layer utilities {
 
-  /* Chip-style icon button inspired by SkillGrid: subtle ring, soft bg, minimal hover */
   .chip-button {
-    @apply inline-flex items-center justify-center h-10 w-10 rounded-xl ring-1 ring-slate-200/70 dark:ring-slate-700/50 bg-white/70 dark:bg-white/5 text-slate-700 dark:text-slate-200 shadow-sm backdrop-blur-sm transition-colors duration-150 ease-out hover:bg-white/80 dark:hover:bg-white/10;
+    @apply inline-flex items-center justify-center h-12 w-12 rounded-2xl ring-2 backdrop-blur-md transition-all duration-300 ease-out hover:scale-110;
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-400) 55%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, white 70%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-100) 75%, transparent)
+    );
+    color: var(--ui-color-primary-700);
+    box-shadow: 
+      0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 15%, transparent),
+      0 4px 6px -2px color-mix(in oklch, var(--ui-color-primary-500) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--ui-color-primary-300) 35%, transparent);
+  }
+
+  .chip-button:hover {
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-500) 70%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, var(--ui-color-primary-50) 90%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-100) 95%, transparent)
+    );
+    box-shadow: 
+      0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 25%, transparent),
+      0 8px 10px -6px color-mix(in oklch, var(--ui-color-primary-500) 20%, transparent);
+  }
+
+  .dark .chip-button {
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-600) 45%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, white 15%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-950) 50%, transparent)
+    );
+    color: var(--ui-color-primary-200);
+    box-shadow: 
+      0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 10%, transparent),
+      0 4px 6px -2px color-mix(in oklch, var(--ui-color-primary-500) 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--ui-color-primary-700) 35%, transparent);
+  }
+
+  .dark .chip-button:hover {
+    --tw-ring-color: color-mix(in oklch, var(--ui-color-primary-500) 60%, transparent);
+    background: linear-gradient(
+      to bottom right,
+      color-mix(in oklch, white 20%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-900) 60%, transparent)
+    );
+    box-shadow: 
+      0 20px 25px -5px color-mix(in oklch, var(--ui-color-primary-500) 15%, transparent),
+      0 8px 10px -6px color-mix(in oklch, var(--ui-color-primary-500) 12%, transparent);
+  }
+
+  /* GitHub Activity Contribution Graph - Dynamic Primary Color */
+  /* Level 0: No contributions - very neutral/muted color */
+  .contrib-level-0 {
+    background-color: var(--ui-color-neutral-100);
+  }
+  /* Levels 1-4: More contributions = darker/more vibrant primary */
+  .contrib-level-1 {
+    background-color: var(--ui-color-primary-200);
+  }
+  .contrib-level-2 {
+    background-color: var(--ui-color-primary-400);
+  }
+  .contrib-level-3 {
+    background-color: var(--ui-color-primary-600);
+  }
+  .contrib-level-4 {
+    background-color: var(--ui-color-primary-800);
+  }
+
+  /* Dark mode overrides for contribution graph */
+  /* In dark mode: brighter = more contributions (same visual logic as light) */
+  .dark .contrib-level-0 {
+    background-color: var(--ui-color-neutral-800);
+  }
+  .dark .contrib-level-1 {
+    background-color: var(--ui-color-primary-950);
+  }
+  .dark .contrib-level-2 {
+    background-color: var(--ui-color-primary-800);
+  }
+  .dark .contrib-level-3 {
+    background-color: var(--ui-color-primary-600);
+  }
+  .dark .contrib-level-4 {
+    background-color: var(--ui-color-primary-400);
   }
 }
 
@@ -283,13 +627,11 @@
     width: 100%;
     z-index: 1000;
     pointer-events: none;
-    /* Use primary color gradient; adapt in dark mode */
-    background-image: linear-gradient(to right,
-        rgb(99 102 241 / 0.9),
-        /* indigo-500 */
-        rgb(139 92 246 / 0.9)
-        /* violet-500 */
-      );
+    background-image: linear-gradient(
+      to right,
+      color-mix(in oklch, var(--ui-color-primary-500) 90%, transparent),
+      color-mix(in oklch, var(--ui-color-primary-600) 90%, transparent)
+    );
     transform-origin: left center;
     animation: locale-progress-grow 600ms ease-out forwards;
   }

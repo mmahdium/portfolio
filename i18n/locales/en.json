@@ -1,9 +1,11 @@
 {
   "sections": {
     "work": "Work Experience",
+    "workAccordion": "7+ years building enterprise solutions and web applications.",
     "education": "Education",
     "recommendations": "Recommendations",
     "projects": " Projects",
+    "projectsAccordion": "Real-world applications built for clients and the community.",
     "blog": "Blog",
     "contact": "Contact",
     "mainTools": "Main tools",
@@ -11,13 +13,17 @@
     "values": "Values",
     "skills": "Skills",
     "softSkills": "Values & Soft Skills",
-    "language": "Language Proficiency"
+    "language": "Language Proficiency",
+    "githubActivity": "GitHub Activity"
   },
   "skills": {
     "expert": "Expert",
     "proficient": "Proficient",
     "usedBefore": "Used before",
     "aiStack": "AI Stack"
+  },
+  "softSkillsAccordion": {
+    "label": "Mindset and interpersonal strengths that drive team success."
   },
   "softSkills": {
     "problemSolving": {
@@ -63,7 +69,9 @@
     }
   },
   "hero": {
-    "currently": "Currently at"
+    "currently": "Currently at",
+    "viewResume": "View Resume",
+    "downloadPdf": "Download PDF"
   },
   "toasts": {
     "emailCopied": {
@@ -108,7 +116,10 @@
     "noResults": "No posts found matching your search",
     "copyCode": "Copy code",
     "codeCopied": "Copied!",
-    "subscribe": "Subscribe via RSS"
+    "subscribe": "Subscribe via RSS",
+    "sharePost": "Share this post",
+    "linkCopied": "Link copied to clipboard!",
+    "copyFailed": "Failed to copy link"
   },
   "common": {
     "present": "Present",
@@ -185,5 +196,12 @@
     "current": "Current",
     "freelance": "Freelance Projects",
     "public": "Public Repositories"
+  },
+  "portfolio": {
+    "githubActivity": {
+      "title": "GitHub Activity",
+      "subtitle": "My contributions over the past year",
+      "error": "Failed to load GitHub contributions"
+    }
   }
 }

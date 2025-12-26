@@ -1,6 +1,6 @@
 <template>
   <UInput :model-value="modelValue" :placeholder="t('blog.searchPlaceholder')" icon="i-heroicons-magnifying-glass"
-    size="lg" :ui="{ icon: { trailing: { pointer: '' } } }" @update:model-value="handleInput">
+    size="lg" @update:model-value="handleInput">
     <template v-if="modelValue" #trailing>
       <UButton color="gray" variant="link" icon="i-heroicons-x-mark-20-solid" :padded="false" @click="clearSearch" />
     </template>

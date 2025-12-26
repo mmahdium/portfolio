@@ -1,9 +1,7 @@
 <template>
   <UCard :ui="{
-    base: 'my-6',
-    body: { padding: 'p-4 sm:p-5' },
-    ring: 'ring-2',
-    divide: ''
+    root: 'my-6 ring-2',
+    body: 'p-4 sm:p-5'
   }" :class="cardClass">
     <div class="flex items-start gap-3">
       <UIcon :name="icon" :class="iconClass" class="mt-0.5 h-5 w-5 flex-shrink-0" />

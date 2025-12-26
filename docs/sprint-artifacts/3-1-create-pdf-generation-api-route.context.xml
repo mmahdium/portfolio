@@ -1,0 +1,142 @@
+<story-context id="3-1-create-pdf-generation-api-route" v="1.0">
+  <metadata>
+    <epicId>3</epicId>
+    <storyId>3.1</storyId>
+    <title>Create PDF Generation API Route</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-12-01</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/3-1-create-pdf-generation-api-route.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>system</asA>
+    <iWant>a server endpoint that generates PDF from the resume page</iWant>
+    <soThat>users get consistent, high-quality PDF output</soThat>
+    <tasks>
+      - Create API route file at server/api/resume/pdf.get.ts
+      - Implement Puppeteer PDF generation
+      - Add error handling with timeout
+      - Configure for Vercel deployment
+      - Test API endpoint
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC1">Given a GET request to /api/resume/pdf, when the server processes the request, then it returns a PDF binary with Content-Type application/pdf</criterion>
+    <criterion id="AC2">Response includes Content-Disposition: attachment; filename="Ali_Arghyani_Resume.pdf"</criterion>
+    <criterion id="AC3">PDF matches the web preview exactly (WYSIWYG)</criterion>
+    <criterion id="AC4">PDF text is selectable and copy-able (ATS-compatible)</criterion>
+    <criterion id="AC5">PDF is A4 format (210mm × 297mm)</criterion>
+    <criterion id="AC6">PDF generation completes in under 3 seconds</criterion>
+    <criterion id="AC7">Given an error occurs, when caught, then it returns status 500 with JSON error message</criterion>
+    <criterion id="AC8">Timeout is set to 10 seconds max</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>API Contracts</section>
+        <snippet>GET /api/resume/pdf returns PDF binary with Content-Type: application/pdf and Content-Disposition header</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Novel Pattern: WYSIWYG PDF Export</section>
+        <snippet>Puppeteer navigates to /resume?print=true, waits for networkidle0, generates PDF with format A4 and printBackground true</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Deployment Architecture</section>
+        <snippet>Use puppeteer-core + @sparticuz/chromium for Vercel serverless. Memory: 1024MB, maxDuration: 10s</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-3.md</path>
+        <title>Epic Technical Specification: PDF Export</title>
+        <section>APIs and Interfaces</section>
+        <snippet>GET /api/resume/pdf - Success returns PDF buffer, Error returns 500 with JSON { error, message }</snippet>
+      </doc>
+    </docs>
+    <code>
+      <file>
+        <path>app/pages/resume.vue</path>
+        <description>Resume page that will be captured by Puppeteer. Supports ?print=true query param.</description>
+        <relevantSymbols>isPrintMode computed property</relevantSymbols>
+      </file>
+      <file>
+        <path>app/composables/useResumeData.ts</path>
+        <description>Provides getPdfFilename() for generating filename</description>
+        <relevantSymbols>getPdfFilename()</relevantSymbols>
+      </file>
+    </code>
+    <dependencies>
+      <node>
+        <package name="puppeteer" version="^23.x" note="Development - full Chromium bundled" />
+        <package name="puppeteer-core" version="^23.x" note="Production - no bundled Chromium" />
+        <package name="@sparticuz/chromium" version="^131.x" note="Production - Vercel-optimized Chromium" />
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    - File location must be server/api/resume/pdf.get.ts (Nuxt server route convention)
+    - Must use defineEventHandler from Nuxt
+    - Must detect environment for puppeteer vs puppeteer-core selection
+    - Must navigate to /resume?print=true (not /resume)
+    - Must wait for networkidle0 before PDF generation
+    - Must close browser in finally block to prevent memory leaks
+    - Timeout must be 10 seconds max
+    - Memory limit 1024MB on Vercel
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>defineEventHandler</name>
+      <kind>Nuxt server utility</kind>
+      <signature>defineEventHandler(async (event) => { ... })</signature>
+      <path>nitro/runtime</path>
+    </interface>
+    <interface>
+      <name>setResponseHeaders</name>
+      <kind>Nuxt server utility</kind>
+      <signature>setResponseHeaders(event, { 'Content-Type': string, 'Content-Disposition': string })</signature>
+      <path>h3</path>
+    </interface>
+    <interface>
+      <name>getRequestURL</name>
+      <kind>Nuxt server utility</kind>
+      <signature>getRequestURL(event): URL</signature>
+      <path>h3</path>
+    </interface>
+    <interface>
+      <name>puppeteer.launch</name>
+      <kind>Puppeteer API</kind>
+      <signature>puppeteer.launch({ headless: boolean, args?: string[], executablePath?: string }): Promise&lt;Browser&gt;</signature>
+      <path>puppeteer or puppeteer-core</path>
+    </interface>
+    <interface>
+      <name>page.pdf</name>
+      <kind>Puppeteer API</kind>
+      <signature>page.pdf({ format: 'A4', printBackground: boolean, margin?: object }): Promise&lt;Buffer&gt;</signature>
+      <path>puppeteer</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Nuxt server route testing. Test API response headers and PDF content.</standards>
+    <locations>server/api/**/*.spec.ts, tests/</locations>
+    <ideas>
+      <idea ac="AC1">Request /api/resume/pdf, verify Content-Type is application/pdf</idea>
+      <idea ac="AC2">Verify Content-Disposition header contains correct filename</idea>
+      <idea ac="AC3">Open generated PDF, compare visually to web preview</idea>
+      <idea ac="AC4">Open PDF in reader, try to select and copy text</idea>
+      <idea ac="AC5">Check PDF page dimensions are A4 (210mm × 297mm)</idea>
+      <idea ac="AC6">Measure time from request to response, verify under 3 seconds</idea>
+      <idea ac="AC7">Simulate error, verify 500 status and JSON response</idea>
+      <idea ac="AC8">Verify timeout configuration in code</idea>
+    </ideas>
+  </tests>
+</story-context>

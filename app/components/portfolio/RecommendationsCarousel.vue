@@ -1,13 +1,13 @@
 <template>
-  <section ref="sectionEl" class="py-8" v-if="recs.length > 0">
+  <section ref="sectionEl" class="section-spacing">
     <UContainer>
-      <div class="flex flex-wrap items-center gap-3 mb-8">
+      <div class="section-header">
         <!-- <div
           class="p-2 rounded-lg bg-gradient-to-br from-blue-500/10 to-indigo-500/10 dark:from-blue-400/20 dark:to-indigo-400/20">
         </div> -->
         <div class="flex items-center gap-3 flex-1 min-w-0">
           <UIcon name="i-twemoji-left-speech-bubble" class="text-2xl" />
-          <h2 class="text-2xl font-bold flex items-center gap-2 truncate">
+          <h2 class="section-title flex items-center gap-2 truncate">
             <span>{{ t('sections.recommendations') }}</span>
           </h2>
         </div>
@@ -111,7 +111,7 @@ const sectionEl = ref<HTMLElement | null>(null)
 const hasEntered = ref(false)
 const reduceMotion = import.meta.client ? usePreferredReducedMotion() : ref<'no-preference'>('no-preference')
 const carouselUi = {
-  root: 'relative overflow-hidden pb-12 select-none',
+  root: 'relative overflow-hidden  select-none',
   viewport: 'overflow-visible',
   container: 'py-2 !ms-0 gap-3 ps-3 sm:ps-4 pe-3 sm:pe-4 items-stretch',
   item: 'basis-full sm:basis-1/2 lg:basis-1/3 flex',

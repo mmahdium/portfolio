@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<story-context id="story-1-3-context" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>3</storyId>
+    <title>Create Resume Data Composable</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-11-30</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-3-create-resume-data-composable.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>developer</asA>
+    <iWant>a composable to access resume data</iWant>
+    <soThat>components can easily consume the data reactively</soThat>
+    <tasks>
+      <task id="1" ac="1">Create app/composables/useResumeData.ts file</task>
+      <task id="2" ac="2,3">Import dependencies and export useResumeData function</task>
+      <task id="3" ac="3">Implement resume reactive reference</task>
+      <task id="4" ac="4">Implement formatDate helper (YYYY-MM to "Jan 2023")</task>
+      <task id="5" ac="5">Implement getFullName helper</task>
+      <task id="6" ac="6">Implement getPdfFilename helper</task>
+      <task id="7" ac="2-6">Return composable interface</task>
+      <task id="8" ac="1-6">Verify TypeScript compilation</task>
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC-1">File exists at app/composables/useResumeData.ts</criterion>
+    <criterion id="AC-2">Exports useResumeData() function</criterion>
+    <criterion id="AC-3">Returns resume as reactive reference</criterion>
+    <criterion id="AC-4">Returns formatDate() that converts "2023-01" to "Jan 2023"</criterion>
+    <criterion id="AC-5">Returns getFullName() that returns full name</criterion>
+    <criterion id="AC-6">Returns getPdfFilename() that returns "FirstName_LastName_Resume.pdf"</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Implementation Patterns - Composable Organization</section>
+        <snippet>Composables use camelCase with 'use' prefix. Use computed for derived values. Error handling pattern with useToast.</snippet>
+      </doc>
+      <doc>
+        <path>docs/epics.md</path>
+        <title>Resume Export Feature - Epic Breakdown</title>
+        <section>Story 1.3: Create Resume Data Composable</section>
+        <snippet>Composable returns resume ref, formatDate, getFullName, getPdfFilename helpers.</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-1.md</path>
+        <title>Epic Technical Specification: Resume Data and Types</title>
+        <section>APIs and Interfaces - Composable Interface</section>
+        <snippet>useResumeData returns: resume (ComputedRef), formatDate(date: string): string, getFullName(): string, getPdfFilename(): string</snippet>
+      </doc>
+    </docs>
+    <code>
+      <file>
+        <path>app/data/resume.en.ts</path>
+        <kind>data</kind>
+        <symbol>resumeData</symbol>
+        <reason>MUST import resumeData from this file. Created in Story 1.2.</reason>
+      </file>
+      <file>
+        <path>app/types/resume.ts</path>
+        <kind>types</kind>
+        <symbol>Resume</symbol>
+        <reason>Type reference for resume data structure.</reason>
+      </file>
+      <file>
+        <path>app/composables</path>
+        <kind>directory</kind>
+        <symbol>composables pattern</symbol>
+        <reason>Reference for existing composable patterns in project.</reason>
+      </file>
+    </code>
+    <dependencies>
+      <node>
+        <package>vue</package>
+        <version>^3.5.x</version>
+        <purpose>computed for reactive references</purpose>
+      </node>
+      <node>
+        <package>nuxt</package>
+        <version>^4.1.3</version>
+        <purpose>Auto-imports composables</purpose>
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint type="location">File must be at app/composables/useResumeData.ts</constraint>
+    <constraint type="naming">Function name: useResumeData (camelCase with 'use' prefix)</constraint>
+    <constraint type="reactivity">Use computed for derived values</constraint>
+    <constraint type="date-format-input">Input: YYYY-MM string (e.g., "2022-01")</constraint>
+    <constraint type="date-format-output">Output: "Jan 2023" for English</constraint>
+    <constraint type="filename-format">Format: "FirstName_LastName_Resume.pdf"</constraint>
+    <constraint type="locale">Default locale: 'en', support future i18n</constraint>
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>useResumeData</name>
+      <kind>Vue Composable</kind>
+      <signature>
+        function useResumeData() {
+          resume: ComputedRef&lt;Resume&gt;
+          formatDate(date: string, locale?: string): string
+          getFullName(): string
+          getPdfFilename(): string
+        }
+      </signature>
+      <path>app/composables/useResumeData.ts (to be created)</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>TypeScript compiler validates composable structure. Manual testing in components. No unit tests required for simple data access composable.</standards>
+    <locations>
+      <location>TypeScript compilation (pnpm typecheck)</location>
+      <location>Manual testing in components (Story 1.3+)</location>
+    </locations>
+    <ideas>
+      <idea ac="AC-1">Verify file exists after creation</idea>
+      <idea ac="AC-2">TypeScript validates function export</idea>
+      <idea ac="AC-3">Test resume ref returns data</idea>
+      <idea ac="AC-4">Test formatDate with various inputs: "2023-01" → "Jan 2023"</idea>
+      <idea ac="AC-5">Test getFullName returns "Ali Arghyani"</idea>
+      <idea ac="AC-6">Test getPdfFilename returns "Ali_Arghyani_Resume.pdf"</idea>
+    </ideas>
+  </tests>
+</story-context>

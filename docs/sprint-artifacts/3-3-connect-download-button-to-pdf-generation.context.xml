@@ -1,0 +1,135 @@
+<story-context id="3-3-connect-download-button-to-pdf-generation" v="1.0">
+  <metadata>
+    <epicId>3</epicId>
+    <storyId>3.3</storyId>
+    <title>Connect Download Button to PDF Generation</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-12-01</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/3-3-connect-download-button-to-pdf-generation.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>to click the download button and get my PDF</iWant>
+    <soThat>I can use my resume for job applications</soThat>
+    <tasks>
+      - Update ResumeDownloadButton component to use useResumePdf composable
+      - Bind loading and disabled states to button
+      - Connect click handler to downloadPdf function
+      - Test full download flow
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+    <criterion id="AC1">Given I click the download button, when PDF generation starts, then the button shows loading spinner</criterion>
+    <criterion id="AC2">The button is disabled during PDF generation</criterion>
+    <criterion id="AC3">Given PDF generation succeeds, when the PDF is ready, then the browser downloads the file</criterion>
+    <criterion id="AC4">Downloaded filename is "Ali_Arghyani_Resume.pdf"</criterion>
+    <criterion id="AC5">Button returns to normal state after download completes</criterion>
+    <criterion id="AC6">Given PDF generation fails, when the error occurs, then a toast notification appears</criterion>
+    <criterion id="AC7">Button returns to normal state after error</criterion>
+    <criterion id="AC8">Button works correctly after error (can retry)</criterion>
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Resume Export Feature - Architecture Document</title>
+        <section>Loading State</section>
+        <snippet>UButton with :loading="isGenerating" :disabled="isGenerating" @click="downloadPdf"</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-3.md</path>
+        <title>Epic Technical Specification: PDF Export</title>
+        <section>AC6: Loading State</section>
+        <snippet>Button shows loading spinner, button is disabled, loading clears when complete</snippet>
+      </doc>
+    </docs>
+    <code>
+      <file>
+        <path>app/components/resume/ResumeDownloadButton.vue</path>
+        <description>Existing download button component with placeholder handler (from Story 2.5)</description>
+        <relevantSymbols>handleDownload (to be replaced), isPrintMode prop</relevantSymbols>
+        <snippet>
+&lt;script setup lang="ts"&gt;
+interface Props {
+  isPrintMode?: boolean
+}
+
+defineProps&lt;Props&gt;()
+
+function handleDownload() {
+  // Placeholder - will be replaced in Epic 3 Story 3.3
+  console.log('Download PDF clicked')
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;UButton
+    v-if="!isPrintMode"
+    icon="i-heroicons-arrow-down-tray"
+    size="lg"
+    color="primary"
+    class="fixed bottom-6 right-6 shadow-lg no-print z-50"
+    @click="handleDownload"
+  &gt;
+    &lt;span class="hidden sm:inline"&gt;Download PDF&lt;/span&gt;
+  &lt;/UButton&gt;
+&lt;/template&gt;
+        </snippet>
+      </file>
+      <file>
+        <path>app/composables/useResumePdf.ts</path>
+        <description>Composable providing isGenerating and downloadPdf (Story 3.2)</description>
+        <relevantSymbols>useResumePdf(), isGenerating, downloadPdf</relevantSymbols>
+      </file>
+    </code>
+    <dependencies>
+      <node>
+        <package name="@nuxt/ui" version="^4.0.x" note="UButton with loading prop" />
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    - Must preserve existing isPrintMode prop functionality
+    - Must preserve existing styling (fixed position, shadow, z-index)
+    - Must preserve responsive text (hidden on mobile)
+    - Must remove placeholder handleDownload function
+    - Must use useResumePdf() composable
+    - Must bind :loading and :disabled to isGenerating
+    - Must bind @click to downloadPdf
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>useResumePdf</name>
+      <kind>Vue composable</kind>
+      <signature>function useResumePdf(): { isGenerating: Ref&lt;boolean&gt;, downloadPdf: () => Promise&lt;void&gt; }</signature>
+      <path>app/composables/useResumePdf.ts</path>
+    </interface>
+    <interface>
+      <name>UButton</name>
+      <kind>Nuxt UI component</kind>
+      <signature>&lt;UButton :loading="boolean" :disabled="boolean" @click="handler" /&gt;</signature>
+      <path>@nuxt/ui</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Vue component testing with Vitest and @vue/test-utils. Test user interactions.</standards>
+    <locations>app/components/**/*.spec.ts, tests/</locations>
+    <ideas>
+      <idea ac="AC1">Click button, verify loading spinner appears (check loading prop or spinner element)</idea>
+      <idea ac="AC2">During generation, verify button has disabled attribute</idea>
+      <idea ac="AC3">Mock successful API, verify file download triggered</idea>
+      <idea ac="AC4">Verify downloaded file has correct filename</idea>
+      <idea ac="AC5">After success, verify loading spinner gone and button enabled</idea>
+      <idea ac="AC6">Mock API error, verify toast notification appears</idea>
+      <idea ac="AC7">After error, verify button returns to normal state</idea>
+      <idea ac="AC8">After error, click button again, verify it works (retry)</idea>
+    </ideas>
+  </tests>
+</story-context>

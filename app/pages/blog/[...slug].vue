@@ -2,17 +2,28 @@
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
-const slug = Array.isArray(route.params.slug) ? route.params.slug : [route.params.slug]
 
-// Fetch current post
-const { data: post } = await useAsyncData(`blog-post-${slug.join('/')}`, async () => {
-  const posts = await queryCollection('blog')
-    .where('path', '=', `/${locale.value}/blog/${slug.join('/')}`)
-    .first()
-  return posts
+const slugParts = computed(() => {
+  const raw = route.params.slug
+  const parts = Array.isArray(raw) ? raw : [raw]
+  return parts.filter((p): p is string => typeof p === 'string' && p.length > 0)
 })
 
-if (!post.value) {
+// Fetch current post
+const { data: post, error: postError } = await useAsyncData(
+  () => `blog-post-${locale.value}-${slugParts.value.join('/')}`,
+  async () => {
+    return await queryCollection('blog')
+      .where('path', '=', `/${locale.value}/blog/${slugParts.value.join('/')}`)
+      .first()
+  },
+  {
+    watch: [locale, slugParts],
+    server: true
+  }
+)
+
+if (process.server && (!post.value || postError.value)) {
   throw createError({
     statusCode: 404,
     message: 'Blog post not found',
@@ -21,18 +32,25 @@ if (!post.value) {
 }
 
 // Fetch all posts for prev/next navigation
-const { data: allPosts } = await useAsyncData(`blog-posts-nav-${locale.value}`, async () => {
-  const posts = await queryCollection('blog')
-    .where('draft', '<>', true)
-    .order('date', 'DESC')
-    .all()
+const { data: allPosts } = await useAsyncData(
+  () => `blog-posts-nav-${locale.value}`,
+  async () => {
+    const posts = await queryCollection('blog')
+      .where('draft', '<>', true)
+      .order('date', 'DESC')
+      .all()
 
-  // Filter by locale and posts without draft field
-  return posts.filter((p: any) =>
-    p.path?.startsWith(`/${locale.value}/blog/`) &&
-    (p.draft === false || p.draft === undefined)
-  )
-})
+    // Filter by locale and posts without draft field
+    return posts.filter((p: any) =>
+      p.path?.startsWith(`/${locale.value}/blog/`) &&
+      (p.draft === false || p.draft === undefined)
+    )
+  },
+  {
+    watch: [locale],
+    server: true
+  }
+)
 
 // Calculate adjacent posts
 const currentIndex = computed(() => {
@@ -56,6 +74,8 @@ const siteUrl = 'https://mahdium.ir' // TODO: Move to runtime config
 // Custom meta tags
 if (post.value) {
   const postData = post.value as any
+  const canonicalPath = postData.path ? postData.path.replace(/^\/(en|fa)/, '') : ''
+  const canonicalUrl = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl
 
   useSeoMeta({
     title: `${postData.title} | ${t('blog.title')}`,
@@ -64,7 +84,7 @@ if (post.value) {
     ogDescription: postData.description,
     ogImage: postData.image || '/img/blog/default-cover.jpg',
     ogType: 'article',
-    ogUrl: `${siteUrl}${postData.path}`,
+    ogUrl: canonicalUrl,
     twitterCard: 'summary_large_image',
     twitterTitle: postData.title,
     twitterDescription: postData.description,
@@ -77,6 +97,14 @@ if (post.value) {
 
   // JSON-LD structured data
   useHead({
+    link: canonicalPath
+      ? [
+          {
+            rel: 'canonical',
+            href: canonicalUrl
+          }
+        ]
+      : [],
     script: [
       {
         type: 'application/ld+json',
@@ -139,17 +167,18 @@ if (post.value) {
             <ContentRenderer v-if="(post as any).body" :value="(post as any).body" />
           </article>
 
+          <!-- Share Buttons -->
+          <BlogShare :title="(post as any).title" :url="`${siteUrl}${(post as any).path.replace(/^\/(en|fa)/, '')}`" />
+
           <!-- Blog Navigation (Prev/Next) -->
           <BlogNavigation :prev="prevPost" :next="nextPost" />
         </div>
 
         <!-- Sidebar: Table of Contents (Desktop) -->
         <aside v-if="(post as any).body?.toc?.links?.length" class="hidden lg:block">
-          <UContentToc :links="(post as any).body.toc.links" :title="t('blog.tableOfContents')" color="primary"
-            highlight :ui="{
-              root: 'sticky top-24',
-              container: 'bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-4'
-            }" />
+          <div class="sticky top-24">
+            <BlogTableOfContents :toc="(post as any).body.toc" />
+          </div>
         </aside>
       </div>
     </div>
