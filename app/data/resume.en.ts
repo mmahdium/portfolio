@@ -15,7 +15,7 @@ import type { Resume } from "~/types/resume";
 export const resumeData: Resume = {
   basics: {
     name: "Mohammad Mahdi Mohammadi",
-    label: "Frontend Developer | Vue.js • Nuxt.js • TypeScript",
+    label: "Developer & System Administrator | Linux • Docker • Nginx • Kubernetes",
     // image: '/img/AliProfile.webp',
     email: "me@mahdium.ir",
     phone: "+98 990 787 5312",
