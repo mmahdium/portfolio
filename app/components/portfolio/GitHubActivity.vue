@@ -108,7 +108,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  username: 'aliarghyani'
+  username: 'mahdium'
 })
 
 // Detect mobile for accordion behavior (SSR-safe)

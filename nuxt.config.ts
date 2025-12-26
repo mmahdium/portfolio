@@ -88,8 +88,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       loadPlausible: "", // overrided by env,
-      siteName: "AliArghyani",
-      siteUrl: "https://aliarghyani.vercel.app", // Used for sitemap and RSS generation
+      siteName: "Mohammad Mahdi Mohammadi",
+      siteUrl: "https://mahdium.ir", // Used for sitemap and RSS generation
       githubToken: "", // GitHub API token - set via NUXT_PUBLIC_GITHUB_TOKEN env variable
     },
   },
