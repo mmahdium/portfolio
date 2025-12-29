@@ -73,8 +73,8 @@ const items = computed(() => [
     key: 'ttc',
     iconType: 'icon' as const,
     icon: 'i-twemoji-globe-with-meridians',
-    title: t('languageSection.items.huawei.title'),
-    description: t('languageSection.items.huawei.desc'),
+    title: t('languageSection.items.ttc.title'),
+    description: t('languageSection.items.ttc.desc'),
   },
 ])
 

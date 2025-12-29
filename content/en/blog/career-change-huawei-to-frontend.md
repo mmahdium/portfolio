@@ -2,10 +2,17 @@
 title: "A Big Career Change: From 7 Years at Huawei to Frontend Development"
 description: "A personal story of leaving telecom and team management at Huawei to pursue frontend development, covering the challenges, lessons, and mental shifts required for a successful career transition."
 date: "2025-11-25"
-tags: ["career-change", "frontend-development", "personal-growth", "huawei", "developer-journey"]
-author: "Ali Arghyani"
+tags:
+  [
+    "career-change",
+    "frontend-development",
+    "personal-growth",
+    "huawei",
+    "developer-journey",
+  ]
+author: "Mohammad Mahdi Mohammadi"
 image: "/img/blog/big-career-change.webp"
-draft: false
+draft: true
 ---
 
 When I left the world of telecom and team management—and the years I had spent at Huawei—to move into software development, I didn't have a clear picture of the future.
@@ -106,7 +113,7 @@ We all carry some kind of "toolkit" with us. Mine looked like this:
 
 - **People** who stayed close and didn't let me burn out under pressure.
 - **A program called "Aknoon"** that helped me build mental and emotional structure in the middle of chaos.
-- **Books** like *The Art of Thinking Clearly* and *The Compound Effect* that gave me a deeper understanding of decision-making and consistency.
+- **Books** like _The Art of Thinking Clearly_ and _The Compound Effect_ that gave me a deeper understanding of decision-making and consistency.
 - And most importantly: **the habit of slow refuelling.**
 
 I made a commitment to myself not to burn out.

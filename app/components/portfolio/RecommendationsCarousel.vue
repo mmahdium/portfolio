@@ -1,5 +1,5 @@
 <template>
-  <section ref="sectionEl" class="section-spacing">
+  <section ref="sectionEl" class="section-spacing" v-if="shouldRenderCarousel">
     <UContainer>
       <div class="section-header">
         <!-- <div

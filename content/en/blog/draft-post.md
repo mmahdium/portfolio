@@ -3,7 +3,7 @@ title: "This is a Draft Post"
 description: "This post is in draft mode and should not appear in production."
 date: "2024-11-10"
 tags: ["draft", "test"]
-author: "Ali Arghyani"
+author: "Mohammad Mahdi Mohammadi"
 draft: true
 ---
 

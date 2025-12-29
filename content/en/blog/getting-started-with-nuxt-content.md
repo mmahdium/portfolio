@@ -3,7 +3,7 @@ title: "Getting Started with Nuxt Content"
 description: "Learn how to build a powerful blog with Nuxt Content v3, featuring markdown support, syntax highlighting, and Vue component integration."
 date: "2024-11-09"
 tags: ["nuxt", "vue", "typescript", "tutorial"]
-author: "Ali Arghyani"
+author: "Mohammad Mahdi Mohammadi"
 draft: false
 ---
 
@@ -33,8 +33,8 @@ Then add it to your `nuxt.config.ts`:
 
 ```typescript
 export default defineNuxtConfig({
-  modules: ['@nuxt/content']
-})
+  modules: ["@nuxt/content"],
+});
 ```
 
 ## Creating Content
@@ -59,11 +59,9 @@ Use the `queryContent()` composable to fetch your content:
 
 ```vue
 <script setup>
-const { data: posts } = await useAsyncData('posts', () =>
-  queryContent('blog')
-    .sort({ date: -1 })
-    .find()
-)
+const { data: posts } = await useAsyncData("posts", () =>
+  queryContent("blog").sort({ date: -1 }).find()
+);
 </script>
 ```
 
@@ -86,8 +84,8 @@ Nuxt Content uses Shiki for beautiful syntax highlighting:
 ```javascript
 // This code will be highlighted automatically
 const greeting = (name) => {
-  console.log(`Hello, ${name}!`)
-}
+  console.log(`Hello, ${name}!`);
+};
 ```
 
 ### MDC Components
