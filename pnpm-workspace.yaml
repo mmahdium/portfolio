@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - puppeteer
+  - better-sqlite3
+  - esbuild
+  - vue-demi
+  - @parcel/watcher
