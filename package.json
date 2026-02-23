@@ -66,5 +66,8 @@
     "ios_saf >= 15",
     "not dead"
   ],
-  "packageManager": "pnpm@10.24.0"
+  "packageManager": "pnpm@10.24.0",
+  "onlyBuiltDependencies": [
+    "better-sqlite3"
+  ]
 }
