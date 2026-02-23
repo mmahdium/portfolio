@@ -153,10 +153,7 @@ export default defineNuxtConfig({
       },
     },
     documentDriven: false,
-    respectPathCase: true,
-    database: {
-      type: "json",
-    },
+    respectPathCase: true
   } as any,
 
   i18n: {
