@@ -176,7 +176,13 @@ export const proficient: Tag[] = [
     label: "Gin",
     icon: "i-logos-gin",
     to: "https://gin-gonic.com",
-    type: "Framework", // refined from Library
+    type: "Framework",
+  },
+  {
+    label: "ElasticSearch",
+    icon: "devicon:elasticsearch",
+    to: "https://www.elastic.co/elasticsearch",
+    type: "Data",
   },
 ];
 
