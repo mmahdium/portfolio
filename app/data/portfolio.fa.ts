@@ -13,11 +13,11 @@ const portfolioFa: PortfolioData = {
       website: "https://mahdium.ir/",
       github: "https://github.com/mmahdium",
       // linkedin: "https://www.linkedin.com/in/aliarghyani/",
-      telegram: "https://t.me/mmahdium",
+      // telegram: "https://t.me/mmahdium",
       // whatsapp: "https://wa.me/989123220694",
       // spotify: "https://open.spotify.com/user/aliarghyani",
       // bento: "https://bento.me/arghyani",
-      instagram: "https://www.instagram.com/mmahdiom/",
+      // instagram: "https://www.instagram.com/mmahdiom/",
     },
   },
 
