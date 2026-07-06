@@ -6,7 +6,7 @@ export const portfolio: PortfolioData = {
     title: "A Developer?",
     location: "Kerman Province - Iran",
     summary:
-      "My background is primarily in backend development and system administration, where I've always enjoyed working with infrastructure, servers, and the logic that powers applications. More recently, I've begun learning Nuxt and Vue, expanding into frontend development to round out my skill set. While my main focus remains backend and system administration, I now also build user interfaces with Nuxt 4 and Vue 3, enabling me to deliver complete, end‑to‑end solutions.",
+      "My background is in backend development and system administration, with a strong emphasis on infrastructure, automation, and server side logic. Over the past year, I've shifted my focus toward DevOps and observability—recently working with the LGTM stack (Loki, Grafana, Tempo, Mimir + Prometheus, alloy, ...), which has been a major step toward more mature, enterprise grade systems. I continue to work extensively with Go and .NET for backend services, and I genuinely enjoy tackling system design problems that require thoughtful architecture, scalability, and reliability. While I still build interfaces when needed, my primary interest lies in the layers beneath the UI.",
     // avatar: "/img/AliProfile.webp",
     socials: {
       website: "https://mahdium.ir/",
@@ -90,12 +90,63 @@ export const portfolio: PortfolioData = {
           description: [
             "Supported OSS operations, performance checks and reporting; contributed to team efficiency and customer satisfaction.",
           ],
-          icons: ["i-logos:github-octocat", "i-logos:git-icon"],
+          icons: [
+            "i-logos-docker-icon",
+            "i-logos-grafana",
+            "i-simple-icons-grafana", // Loki
+            "i-logos-prometheus",
+            "i-vscode-icons-file-type-alloy",
+            "i-logos-git-icon",
+            "i-devicon-gitea",
+            "i-logos-linux-tux",
+            "i-simple-icons-ansible",
+            "i-logos-mariadb-icon",
+            "i-simple-icons-umami",
+            "i-logos-matomo-icon",
+            "i-logos-go",
+            "simple-icons:arduino",
+            "i-logos-c",
+            "i-logos-c-plusplus",
+          ],
           link: "https://group7sky.ir/",
           linkLabel: "Group7Sky Website",
         },
       ],
     },
+    {
+      company: "Farimah Software Group",
+      // link: "https://group7sky.ir/",
+      location: "Kerman, Iran",
+      type: "Part-time",
+      positions: [
+        {
+          title: "Technical Lead",
+          start: "Nov 2025",
+          ongoing: true,
+          description: [
+            "Leading and guiding the development team, including task allocation, sprint planning, and overseeing code quality and project progress.",
+            "Managing server infrastructure, networking, and internal services; designing, implementing, and maintaining scalable and secure backend services.",
+            "Designing system architectures and coordinating across teams to improve development workflows and establish CI/CD pipelines.",
+          ],
+          icons: [
+            "i-logos-docker-icon",
+            "i-logos-grafana",
+            "i-simple-icons-grafana", // Loki
+            "i-logos-prometheus",
+            "i-vscode-icons-file-type-alloy",
+            "i-logos-git-icon",
+            "i-devicon-gitea",
+            "i-logos-linux-tux",
+            "i-logos-postgresql",
+            "i-logos-dotnet",
+            "i-logos-elasticsearch",
+            "i-logos-nginx",
+          ],
+          // link: "https://group7sky.ir/",
+          // linkLabel: "Company Website",
+        },
+      ],
+    }
   ],
 
   education: [

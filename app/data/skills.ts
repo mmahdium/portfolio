@@ -1,41 +1,42 @@
 import type { Tag } from "@/types/portfolio.types";
 
 export const expert: Tag[] = [
+
   {
-    label: "Axios",
-    icon: "simple-icons:axios",
-    to: "https://axios-http.com",
-    type: "Library",
+    label: "Grafana",
+    icon: "i-logos-grafana",
+    to: "https://grafana.com/oss/grafana/",
+    type: "Tool"
+  },
+  {
+    label: "Loki",
+    icon: "i-simple-icons-grafana",
+    to: "https://grafana.com/oss/grafana/",
+    type: "Service"
+  },
+  {
+    label: "Prometheus",
+    icon: "i-logos-prometheus",
+    to: "https://grafana.com/oss/prometheus/",
+    type: "Service"
+  },
+  {
+    label: "Alloy",
+    icon: "i-vscode-icons-file-type-alloy",
+    to: "https://grafana.com/oss/alloy-opentelemetry-collector/",
+    type: "Service"
+  },
+  {
+    label: "OpenTelemetry",
+    icon: "i-logos-opentelemetry-icon",
+    to: "https://opentelemetry.io/",
+    type: "Service"
   },
   {
     label: "Git",
     icon: "i-logos-git-icon",
     to: "https://git-scm.com",
     type: "Tool",
-  },
-  {
-    label: "GitHub",
-    icon: "i-logos-github-octocat",
-    to: "https://github.com",
-    type: "Service",
-  },
-  {
-    label: "GitLab",
-    icon: "i-logos-gitlab-icon",
-    to: "https://gitlab.com",
-    type: "Service",
-  },
-  {
-    label: "vue-i18n",
-    icon: "i-twemoji-globe-with-meridians",
-    to: "https://vue-i18n.intlify.dev",
-    type: "Library",
-  },
-  {
-    label: "GitHub Actions",
-    icon: "simple-icons:githubactions",
-    to: "https://docs.github.com/actions",
-    type: "DevOps",
   },
   {
     label: "Docker",
@@ -50,10 +51,46 @@ export const expert: Tag[] = [
     type: "Tool", // refined from Language
   },
   {
+    label: "GitHub",
+    icon: "i-logos-github-octocat",
+    to: "https://github.com",
+    type: "Service",
+  },
+  {
+    label: "GitLab",
+    icon: "i-logos-gitlab-icon",
+    to: "https://gitlab.com",
+    type: "Service",
+  },
+  {
+    label: "GitHub Actions",
+    icon: "simple-icons:githubactions",
+    to: "https://docs.github.com/actions",
+    type: "DevOps",
+  },
+  {
+    label: "Gitea",
+    icon: "i-devicon-gitea",
+    to: "https://about.gitea.com",
+    type: "Service",
+  },
+  {
     label: "Ubuntu",
     icon: "i-logos-ubuntu",
     to: "https://www.ubuntu.com",
     type: "Tool",
+  },
+  {
+    label: "MariaDB",
+    icon: "i-logos-mariadb-icon",
+    to: "https://mariadb.org",
+    type: "Data",
+  },
+  {
+    label: "PostgreSQL",
+    icon: "i-logos-postgresql",
+    to: "https://www.postgresql.org",
+    type: "Data",
   },
   {
     label: "Matomo",
@@ -62,16 +99,16 @@ export const expert: Tag[] = [
     type: "Service",
   },
   {
+    label: "Umami",
+    icon: "i-simple-icons-umami",
+    to: "https://umami.is/",
+    type: "Service",
+  },
+  {
     label: "Cloudflare",
     icon: "i-logos-cloudflare-icon",
     to: "https://www.cloudflare.com",
     type: "Service",
-  },
-  {
-    label: "DaisyUI",
-    icon: "i-logos-daisyui-icon",
-    to: "https://daisyui.com",
-    type: "Library",
   },
   {
     label: "Nginx",
@@ -97,69 +134,9 @@ export const expert: Tag[] = [
     to: "https://appwrite.io/",
     type: "Service",
   },
-  {
-    label: "MariaDB",
-    icon: "i-logos-mariadb-icon",
-    to: "https://mariadb.org",
-    type: "Data",
-  },
 ];
 
 export const proficient: Tag[] = [
-  {
-    label: "Nuxt.js",
-    icon: "i-logos-nuxt-icon",
-    to: "https://nuxt.com",
-    type: "Framework",
-  },
-  {
-    label: "Swagger",
-    icon: "logos:swagger",
-    to: "https://swagger.io",
-    type: "Tool",
-  },
-  {
-    label: "WebSocket",
-    icon: "i-twemoji-electric-plug",
-    to: "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API",
-    type: "Library",
-  },
-  {
-    label: "Vue.js",
-    icon: "i-logos-vue",
-    to: "https://vuejs.org",
-    type: "Framework",
-  },
-  {
-    label: "TypeScript",
-    icon: "i-logos-typescript-icon",
-    to: "https://www.typescriptlang.org",
-    type: "Language",
-  },
-  {
-    label: "Tailwind CSS",
-    icon: "i-logos-tailwindcss-icon",
-    to: "https://tailwindcss.com",
-    type: "Library",
-  },
-  {
-    label: "PostgreSQL",
-    icon: "i-logos-postgresql",
-    to: "https://www.postgresql.org",
-    type: "Data",
-  },
-  {
-    label: "pnpm",
-    icon: "i-logos-pnpm",
-    to: "https://pnpm.io/",
-    type: "Tool",
-  },
-  {
-    label: "Pinia",
-    icon: "i-logos-pinia",
-    to: "https://pinia.vuejs.org",
-    type: "Library",
-  },
   {
     label: ".NET",
     icon: "i-logos-dotnet",
@@ -180,24 +157,97 @@ export const proficient: Tag[] = [
   },
   {
     label: "ElasticSearch",
-    icon: "devicon:elasticsearch",
+    icon: "i-logos-elasticsearch",
     to: "https://www.elastic.co/elasticsearch",
     type: "Data",
   },
+  {
+    label: "MongoDB",
+    icon: "i-logos-mongodb-icon",
+    to: "https://www.mongodb.com",
+    type: "Data",
+  },
+  {
+    label: "Redis",
+    icon: "i-logos-elasticsearch",
+    to: "https://redis.io/",
+    type: "Data",
+  },
+  {
+    label: "Axios",
+    icon: "simple-icons:axios",
+    to: "https://axios-http.com",
+    type: "Library",
+  },
+  {
+    label: "Nuxt.js",
+    icon: "i-logos-nuxt-icon",
+    to: "https://nuxt.com",
+    type: "Framework",
+  },
+  {
+    label: "Swagger",
+    icon: "logos:swagger",
+    to: "https://swagger.io",
+    type: "Tool",
+  },
+  {
+    label: "DaisyUI",
+    icon: "i-logos-daisyui-icon",
+    to: "https://daisyui.com",
+    type: "Library",
+  },
+  {
+    label: "WebSocket",
+    icon: "i-twemoji-electric-plug",
+    to: "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API",
+    type: "Library",
+  },
+  {
+    label: "Vue.js",
+    icon: "i-logos-vue",
+    to: "https://vuejs.org",
+    type: "Framework",
+  },
+  {
+    label: "vue-i18n",
+    icon: "i-twemoji-globe-with-meridians",
+    to: "https://vue-i18n.intlify.dev",
+    type: "Library",
+  },
+  {
+    label: "TypeScript",
+    icon: "i-logos-typescript-icon",
+    to: "https://www.typescriptlang.org",
+    type: "Language",
+  },
+  {
+    label: "Tailwind CSS",
+    icon: "i-logos-tailwindcss-icon",
+    to: "https://tailwindcss.com",
+    type: "Library",
+  },
+
 ];
 
 export const usedBefore: Tag[] = [
+  {
+    label: "Kubernetes",
+    icon: "i-devicon-kubernetes",
+    to: "https://kubernetes.io/",
+    type: "DevOps",
+  },
+  {
+    label: "Ansible",
+    icon: "i-simple-icons-ansible",
+    to: "https://ansible.com/",
+    type: "DevOps",
+  },
   {
     label: "Python",
     icon: "i-logos-python",
     to: "https://www.python.org",
     type: "Language",
-  },
-  {
-    label: "Iconify",
-    icon: "simple-icons:iconify",
-    to: "https://iconify.design",
-    type: "Library",
   },
   {
     label: "C",
@@ -210,6 +260,12 @@ export const usedBefore: Tag[] = [
     icon: "i-logos-c-plusplus",
     to: "https://en.wikipedia.org/wiki/C%2B%2B",
     type: "Language",
+  },
+  {
+    label: "OAuth2",
+    icon: "i-devicon-oauth",
+    to: "https://oauth.net/",
+    type: "Service",
   },
   {
     label: "Arduino",
@@ -236,10 +292,10 @@ export const usedBefore: Tag[] = [
     type: "Library",
   },
   {
-    label: "MongoDB",
-    icon: "i-logos-mongodb-icon",
-    to: "https://www.mongodb.com",
-    type: "Data",
+    label: "Pinia",
+    icon: "i-logos-pinia",
+    to: "https://pinia.vuejs.org",
+    type: "Library",
   },
 ];
 

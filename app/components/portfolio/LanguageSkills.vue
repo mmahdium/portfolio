@@ -63,18 +63,18 @@ onMounted(() => {
 
 const items = computed(() => [
   {
-    key: 'ielts',
-    iconType: 'image' as const,
-    icon: '/img/icons8-ielts-48.png',
-    title: t('languageSection.items.ielts.title'),
-    description: t('languageSection.items.ielts.desc'),
-  },
-  {
     key: 'ttc',
     iconType: 'icon' as const,
     icon: 'i-twemoji-globe-with-meridians',
     title: t('languageSection.items.ttc.title'),
     description: t('languageSection.items.ttc.desc'),
+  },
+  {
+    key: 'ielts',
+    iconType: 'image' as const,
+    icon: '/img/icons8-ielts-48.png',
+    title: t('languageSection.items.ielts.title'),
+    description: t('languageSection.items.ielts.desc'),
   },
 ])
 
