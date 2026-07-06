@@ -92,7 +92,7 @@ export const aiStackItems: AiItem[] = [
   },
   {
     id: "ide-rider",
-    name: "Rider",
+    name: "JetBrains Rider",
     category: "ide",
     group: "ide_dev",
     icon: "i-twemoji-rocket",

@@ -1,10 +1,10 @@
 export default defineAppConfig({
   ui: {
     strategy: "merge",
-    primary: "violet",
+    primary: "lime",
     gray: "zinc",
     colors: {
-      primary: 'violet',
+      primary: 'lime',
     },
     icons: {
       dynamic: true,

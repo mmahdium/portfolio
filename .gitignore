@@ -25,3 +25,5 @@ logs
 
 # MCP configuration files (may contain secrets)
 .roo
+
+.mimocode/

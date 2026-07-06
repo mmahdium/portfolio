@@ -3,17 +3,20 @@ import type { PortfolioData } from "@/types/portfolio.types";
 export const portfolio: PortfolioData = {
   profile: {
     name: "Mohammad Mahdi Mohammadi",
-    title: "A Developer?",
+    title: "Backend & DevOps Engineer",
+    headline: "Backend & DevOps Practitioner",
     location: "Kerman Province - Iran",
     summary:
-      "My background is in backend development and system administration, with a strong emphasis on infrastructure, automation, and server side logic. Over the past year, I've shifted my focus toward DevOps and observability—recently working with the LGTM stack (Loki, Grafana, Tempo, Mimir + Prometheus, alloy, ...), which has been a major step toward more mature, enterprise grade systems. I continue to work extensively with Go and .NET for backend services, and I genuinely enjoy tackling system design problems that require thoughtful architecture, scalability, and reliability. While I still build interfaces when needed, my primary interest lies in the layers beneath the UI.",
+      "My background is in backend development and system administration, with a strong emphasis on infrastructure, automation, and server side logic. Over the past year, I've shifted my focus toward DevOps and observability; recently working with the LGTM stack (Loki, Grafana, Tempo, Mimir + Prometheus, alloy, ...), which has been a major step toward more mature, enterprise grade systems. I continue to work extensively with Go and .NET for backend services, and I genuinely enjoy tackling system design problems that require thoughtful architecture, scalability, and reliability. While I still build interfaces when needed, my primary interest lies in the layers beneath the UI.",
+    availability: "Open to DevOps, infrastructure, and backend engineering roles.",
+    focusAreas: ["Infrastructure & Observability", "Backend Services", "System Administration", "CI/CD & Automation"],
     // avatar: "/img/AliProfile.webp",
     socials: {
       website: "https://mahdium.ir/",
       github: "https://github.com/mmahdium",
       // linkedin: "https://www.linkedin.com/in/aliarghyani/",
       // telegram: "https://t.me/mmahdium",
-      // whatsapp: "https://wa.me/989123220694",
+      whatsapp: "https://wa.me/989907875312",
       // spotify: "https://open.spotify.com/user/aliarghyani",
       // bento: "https://bento.me/arghyani",
       // instagram: "https://www.instagram.com/mmahdiom/",
@@ -73,6 +76,143 @@ export const portfolio: PortfolioData = {
         description: "Explain the why/what/how. Prefer concise async updates.",
       },
     ],
+  },
+
+  services: [
+    {
+      title: "Infrastructure & Observability Setup",
+      description: "Designing and deploying monitoring stacks with Prometheus, Grafana, Loki, and Tempo for enterprise-grade observability.",
+      icon: "i-mdi-chart-box-outline",
+    },
+    {
+      title: "Backend Service Development",
+      description: "Building production-ready backend services with Go and .NET, focused on architecture, scalability, and reliability.",
+      icon: "i-mdi-server-network",
+    },
+    {
+      title: "CI/CD & Automation",
+      description: "Setting up continuous integration and deployment pipelines, infrastructure automation with Ansible, and GitOps workflows.",
+      icon: "i-mdi-source-branch-sync",
+    },
+    {
+      title: "System Administration & Linux Ops",
+      description: "Managing server infrastructure, networking, container orchestration, and internal services across Linux environments.",
+      icon: "i-mdi-linux",
+    },
+    {
+      title: "Database Design & Management",
+      description: "Working with PostgreSQL, MariaDB, Elasticsearch, and Supabase for data persistence, search, and real-time features.",
+      icon: "i-mdi-database-outline",
+    },
+    {
+      title: "Container Orchestration & Docker",
+      description: "Containerizing applications, managing Docker environments, and building scalable deployment configurations.",
+      icon: "i-logos-docker-icon",
+    },
+  ],
+
+  stackGroups: [
+    {
+      title: "Observability & Analytics",
+      description: "Monitoring, logging, metrics, and analytics across infrastructure.",
+      items: [
+        { label: "Grafana", icon: "i-logos-grafana", to: "https://grafana.com/oss/grafana/", type: "Tool" },
+        { label: "Loki", icon: "i-simple-icons-grafana", to: "https://grafana.com/oss/grafana/", type: "Service" },
+        { label: "Prometheus", icon: "i-logos-prometheus", to: "https://grafana.com/oss/prometheus/", type: "Service" },
+        { label: "Alloy", icon: "i-vscode-icons-file-type-alloy", to: "https://grafana.com/oss/alloy-opentelemetry-collector/", type: "Service" },
+        { label: "OpenTelemetry", icon: "i-logos-opentelemetry-icon", to: "https://opentelemetry.io/", type: "Service" },
+        { label: "Matomo", icon: "i-logos-matomo-icon", to: "https://matomo.org", type: "Service" },
+        { label: "Umami", icon: "i-simple-icons-umami", to: "https://umami.is/", type: "Service" },
+      ],
+    },
+    {
+      title: "Infrastructure & DevOps",
+      description: "Containerization, orchestration, CI/CD, and server management.",
+      items: [
+        { label: "Docker", icon: "i-logos-docker-icon", to: "https://www.docker.com", type: "DevOps" },
+        { label: "Kubernetes", icon: "i-devicon-kubernetes", to: "https://kubernetes.io/", type: "DevOps" },
+        { label: "Ansible", icon: "i-simple-icons-ansible", to: "https://ansible.com/", type: "DevOps" },
+        { label: "Nginx", icon: "i-logos-nginx", to: "https://www.nginx.com", type: "DevOps" },
+        { label: "Linux", icon: "i-logos-linux-tux", to: "https://www.kernel.org", type: "Tool" },
+        { label: "Ubuntu", icon: "i-logos-ubuntu", to: "https://www.ubuntu.com", type: "Tool" },
+        { label: "Git", icon: "i-logos-git-icon", to: "https://git-scm.com", type: "Tool" },
+        { label: "GitHub", icon: "i-logos-github-octocat", to: "https://github.com", type: "Service" },
+        { label: "GitLab", icon: "i-logos-gitlab-icon", to: "https://gitlab.com", type: "Service" },
+        { label: "GitHub Actions", icon: "simple-icons:githubactions", to: "https://docs.github.com/actions", type: "DevOps" },
+        { label: "Gitea", icon: "i-devicon-gitea", to: "https://about.gitea.com", type: "Service" },
+        { label: "Cloudflare", icon: "i-logos-cloudflare-icon", to: "https://www.cloudflare.com", type: "Service" },
+        { label: "Vercel", icon: "i-logos-vercel-icon", to: "https://vercel.com", type: "Service" },
+      ],
+    },
+    {
+      title: "Backend Languages & Frameworks",
+      description: "Server-side languages and frameworks for building backend services.",
+      items: [
+        { label: "Go", icon: "i-logos-go", to: "https://golang.org/", type: "Language" },
+        { label: "Gin", icon: "i-logos-gin", to: "https://gin-gonic.com", type: "Framework" },
+        { label: ".NET", icon: "i-logos-dotnet", to: "https://dotnet.microsoft.com/", type: "Framework" },
+        { label: "TypeScript", icon: "i-logos-typescript-icon", to: "https://www.typescriptlang.org", type: "Language" },
+        { label: "Python", icon: "i-logos-python", to: "https://www.python.org", type: "Language" },
+      ],
+    },
+    {
+      title: "Databases & Storage",
+      description: "Relational, document, cache, and search data stores.",
+      items: [
+        { label: "PostgreSQL", icon: "i-logos-postgresql", to: "https://www.postgresql.org", type: "Data" },
+        { label: "MariaDB", icon: "i-logos-mariadb-icon", to: "https://mariadb.org", type: "Data" },
+        { label: "MongoDB", icon: "i-logos-mongodb-icon", to: "https://www.mongodb.com", type: "Data" },
+        { label: "Redis", icon: "i-logos-elasticsearch", to: "https://redis.io/", type: "Data" },
+        { label: "ElasticSearch", icon: "i-logos-elasticsearch", to: "https://www.elastic.co/elasticsearch", type: "Data" },
+        { label: "SQLite", icon: "i-logos-sqlite", to: "https://www.sqlite.org/index.html", type: "Data" },
+        { label: "Supabase", icon: "i-logos-supabase-icon", to: "https://supabase.io", type: "Service" },
+      ],
+    },
+    {
+      title: "Frontend",
+      description: "UI frameworks, component libraries, and styling tools.",
+      items: [
+        { label: "Vue.js", icon: "i-logos-vue", to: "https://vuejs.org", type: "Framework" },
+        { label: "Nuxt.js", icon: "i-logos-nuxt-icon", to: "https://nuxt.com", type: "Framework" },
+        { label: "Tailwind CSS", icon: "i-logos-tailwindcss-icon", to: "https://tailwindcss.com", type: "Library" },
+        { label: "DaisyUI", icon: "i-logos-daisyui-icon", to: "https://daisyui.com", type: "Library" },
+        { label: "Pinia", icon: "i-logos-pinia", to: "https://pinia.vuejs.org", type: "Library" },
+        { label: "vue-i18n", icon: "i-twemoji-globe-with-meridians", to: "https://vue-i18n.intlify.dev", type: "Library" },
+        { label: "Axios", icon: "simple-icons:axios", to: "https://axios-http.com", type: "Library" },
+        { label: "WebSocket", icon: "i-twemoji-electric-plug", to: "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API", type: "Library" },
+        { label: "Material UI", icon: "i-logos-material-ui", to: "https://mui.com", type: "Library" },
+      ],
+    },
+    {
+      title: "APIs, Auth & Hardware",
+      description: "API documentation, authentication protocols, and hardware prototyping.",
+      items: [
+        { label: "Swagger", icon: "logos:swagger", to: "https://swagger.io", type: "Tool" },
+        { label: "OAuth2", icon: "i-devicon-oauth", to: "https://oauth.net/", type: "Service" },
+        { label: "C", icon: "i-logos-c", to: "https://en.wikipedia.org/wiki/C_(programming_language)", type: "Language" },
+        { label: "C++", icon: "i-logos-c-plusplus", to: "https://en.wikipedia.org/wiki/C%2B%2B", type: "Language" },
+        { label: "Arduino", icon: "simple-icons:arduino", to: "https://www.arduino.cc/", type: "Tool" },
+      ],
+    },
+  ],
+
+  reactExpansion: {
+    title: "Currently expanding into scalable system design and observability",
+    description:
+      "Building deeper skills in designing asynchronous, scalable backend systems and full observability solutions with the Grafana stack and OpenTelemetry.",
+    items: [
+      { label: "OpenTelemetry", icon: "i-logos-opentelemetry-icon" },
+      { label: "Grafana Stack", icon: "i-logos-grafana" },
+      { label: "Async Systems", icon: "i-mdi-arrows-split-vertical" },
+      { label: "Scalable Architecture", icon: "i-mdi-chart-box-outline" },
+      { label: "Go", icon: "i-logos-go" },
+    ],
+  },
+
+  cta: {
+    title: "Available for DevOps, infrastructure, and backend engineering opportunities",
+    description:
+      "I am especially interested in DevOps, infrastructure automation, backend services, and observability platforms that require thoughtful architecture and reliability.",
   },
 
   experiences: [
@@ -165,6 +305,11 @@ export const portfolio: PortfolioData = {
       name: "TBW (To Be Watched)",
       description:
         "A simple and beautiful media list app built with Vue 3 and Tailwind CSS (daisyUI).",
+      context: "Personal project for tracking and organizing media content in a clean, accessible interface.",
+      role: "Full-stack development, UI design, and API integration.",
+      features: ["Media list management", "Responsive UI", "API-driven content", "Clean component architecture"],
+      stack: ["Vue 3", "TypeScript", "Tailwind CSS", "daisyUI", "Vite"],
+      outcome: "A polished media tracking app with a focus on simplicity and user experience.",
       links: [
         {
           label: "GitHub",
@@ -192,6 +337,11 @@ export const portfolio: PortfolioData = {
     {
       name: "TorrentMax",
       description: "Enrich Your Magnet Links with Trackers Instantly",
+      context: "Open-source tool for automatically enriching torrent magnet links with tracker lists.",
+      role: "Designed and built the Nuxt frontend, implemented tracker API integration.",
+      features: ["Magnet link enrichment", "Tracker database", "One-click copy", "Responsive design"],
+      stack: ["Nuxt", "Vue", "TypeScript", "Tailwind CSS"],
+      outcome: "Helps users improve torrent download speeds by ensuring comprehensive tracker coverage.",
       // thumbnail: "/img/projects/ideh.png",
       status: "Active",
       opensource: true,
@@ -219,6 +369,11 @@ export const portfolio: PortfolioData = {
       name: "HoolIt",
       description:
         "HoolIt is an open-source project aiming to provide a simple and easy-to-use alternative to the beloved dweet.io.",
+      context: "Open-source IoT data sharing platform as a lightweight alternative to dweet.io.",
+      role: "Backend development with .NET, containerization with Docker.",
+      features: ["REST API for data posting", "Real-time data retrieval", "Docker deployment", "Simple integration"],
+      stack: [".NET", "Docker"],
+      outcome: "Provides a self-hostable, lightweight data sharing service for IoT and quick prototyping.",
       // thumbnail: "/img/projects/monasef.png",
       status: "Active",
       opensource: true,
@@ -236,6 +391,11 @@ export const portfolio: PortfolioData = {
       name: "PolyList",
       description:
         "PolyList is a social music platform where you can create, manage, and share playlists and libraries with friends. Track your listening history through a public profile powered by web scrobbling.",
+      context: "Social music platform for collaborative playlist management and listening history tracking.",
+      role: "Backend development with Go, frontend with Nuxt, infrastructure with Docker and Supabase.",
+      features: ["Playlist creation & sharing", "Web scrobbling", "Social profiles", "Real-time updates"],
+      stack: ["Go", "Gin", "Nuxt", "Vue", "Supabase", "PostgreSQL", "Docker", "Vercel"],
+      outcome: "A growing social music platform with active users sharing and discovering music together.",
       thumbnail: "/img/projects/polylist.png",
       status: "Active",
       opensource: false,

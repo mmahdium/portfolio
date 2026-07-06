@@ -4,14 +4,16 @@
     "workAccordion": "Building enterprise solutions and managing infrastructure",
     "education": "Education",
     "recommendations": "Recommendations",
-    "projects": " Projects",
+    "projects": "Projects",
     "projectsAccordion": "Real-world applications built for clients and the community.",
     "blog": "Blog",
     "contact": "Contact",
+    "services": "What I Can Help With",
     "mainTools": "Main tools",
     "roles": "Roles",
     "values": "Values",
     "skills": "Skills",
+    "currentlyExpanding": "Currently expanding",
     "softSkills": "Values & Soft Skills",
     "language": "Language Proficiency",
     "githubActivity": "GitHub Activity"
@@ -20,7 +22,12 @@
     "expert": "Expert",
     "proficient": "Proficient",
     "usedBefore": "Used before",
-    "aiStack": "AI Stack"
+    "aiStack": "AI Stack",
+    "subtitle": "Grouped by how the tools support backend, infrastructure, and DevOps work.",
+    "accordionLabel": "Purpose-grouped stack for backend, infrastructure, and DevOps work."
+  },
+  "services": {
+    "subtitle": "Backend, infrastructure, and DevOps work focused on reliability and automation."
   },
   "softSkillsAccordion": {
     "label": "Mindset and interpersonal strengths that drive team success."
@@ -72,7 +79,15 @@
   "hero": {
     "currently": "Currently at",
     "viewResume": "View Resume",
-    "downloadPdf": "Download PDF"
+    "downloadPdf": "Download PDF",
+    "cardSummary": "Backend services, infrastructure, and DevOps systems.",
+    "contactTitle": "Contact Mahdi",
+    "contactDescription": "Use this email for infrastructure, backend, or DevOps project inquiries.",
+    "emailAddress": "Email address",
+    "clipboardBlocked": "Clipboard access is blocked by the browser on this address. You can still select the email or open your email app.",
+    "close": "Close",
+    "copy": "Copy",
+    "openEmailApp": "Open Email App"
   },
   "toasts": {
     "emailCopied": {
@@ -87,6 +102,8 @@
   "buttons": {
     "blog": "Blog Posts",
     "contact": "Contact",
+    "contactMe": "Contact Me",
+    "viewProjects": "View Projects",
     "website": "Website",
     "switchToEnglish": "English",
     "switchToPersian": "فارسی"
@@ -142,10 +159,16 @@
     "suggestion3": "Return to the homepage and start fresh"
   },
   "meta": {
-    "portfolioTitleSuffix": "Portfolio"
+    "portfolioTitleSuffix": "Backend & DevOps Engineer"
   },
   "projectLabels": {
-    "openSource": "Open Source"
+    "openSource": "Open Source",
+    "context": "Context",
+    "role": "My Role",
+    "keyFeatures": "Key Features",
+    "techStack": "Tech Stack",
+    "outcome": "Outcome",
+    "caseStudyDetails": "Case study details"
   },
   "theme": {
     "customizer": "Theme Customizer",

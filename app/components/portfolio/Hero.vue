@@ -1,55 +1,74 @@
 <template>
-  <section id="hero" class="pt-8 pb-6 scroll-mt-20  flex items-center">
+  <section id="hero" class="scroll-mt-20 pt-3 pb-8 sm:pt-6 sm:pb-10">
     <UContainer>
-      <div class="flex flex-col-reverse sm:flex-row items-center sm:items-center justify-center gap-4 sm:gap-8">
-        <div class="flex-1 max-w-2xl text-center sm:text-start">
-          <h1 class="text-primary text-3xl sm:text-4xl font-bold tracking-tight mb-3 sm:mb-4">
-            {{ portfolio.profile.name }}
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px]">
+        <div class="text-center sm:text-start lg:col-span-2">
+          <div class="mb-4 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+            <UBadge color="primary" variant="soft" class="rounded-full">
+              {{ portfolio.profile.name }}
+            </UBadge>
+            <UBadge v-if="portfolio.profile.availability" color="emerald" variant="soft" class="rounded-full">
+              {{ portfolio.profile.availability }}
+            </UBadge>
+          </div>
+
+          <h1 class="mb-4 max-w-6xl text-3xl font-bold leading-tight tracking-normal text-gray-950 dark:text-gray-50 sm:text-5xl lg:text-6xl">
+            {{ portfolio.profile.headline || portfolio.profile.title }}
           </h1>
-          <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-3">
+
+          <p class="max-w-4xl text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg">
             {{ portfolio.profile.summary }}
           </p>
-          <div v-if="portfolio.profile.location || currentRole"
-            class="mb-6 flex flex-col items-center gap-3 text-sm text-gray-600 dark:text-gray-300 sm:items-start">
-            <div v-if="portfolio.profile.location" class="flex items-center gap-2">
-              <UIcon name="i-twemoji-round-pushpin" class="text-base text-primary-600 me-1 dark:text-primary-300" />
-              <span class="leading-relaxed">{{ portfolio.profile.location }}</span>
-            </div>
-            <div v-if="currentRole"
-              class="flex flex-col sm:flex-row items-center justify-center sm:justify-between w-full gap-2 text-base text-gray-700 dark:text-gray-200 text-center sm:text-left">
-              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1">
-                <img v-if="currentRole.companyLogo" :src="currentRole.companyLogo" :alt="`${currentRole.company} logo`"
-                  class="h-7 w-7 rounded-md object-contain" loading="lazy" />
-                <span class="">{{ t('hero.currently') }}</span>
-                <span class="font-semibold company-name">
-                  <a v-if="currentRole.companyLink" :href="currentRole.companyLink" target="_blank" rel="noopener"
-                    class="hover:underline company-name">
-                    {{ currentRole.company }}
-                  </a>
-                  <span v-else>{{ currentRole.company }}</span>
-                </span>
-              </div>
-              <!-- Resume Button - Desktop only -->
-              <NuxtLink to="/resume" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold
-                  resume-button
-                  text-white rounded-full
-                  transition-all duration-300 hover:scale-105
-                  animate-pulse hover:animate-none">
-                <UIcon name="i-heroicons-document-text" class="text-lg" />
-                <span>View Resume</span>
-                <UIcon name="i-heroicons-sparkles" class="text-sm opacity-80" />
-              </NuxtLink>
-            </div>
-            <!-- Resume Button - Mobile only -->
-            <NuxtLink to="/resume" class="sm:hidden inline-flex items-center justify-center gap-2 mt-2 px-4 py-2 text-sm font-medium
-                resume-button
-                text-white rounded-full
-                transition-all duration-300 hover:scale-105">
-              <UIcon name="i-heroicons-document-text" class="text-base" />
-              <span>View My Resume</span>
-              <UIcon name="i-heroicons-arrow-right" class="text-sm" />
+        </div>
+
+        <div class="text-center sm:text-start">
+          <div v-if="portfolio.profile.focusAreas?.length" class="mb-6 flex flex-wrap justify-center gap-2 sm:justify-start">
+            <UBadge v-for="area in portfolio.profile.focusAreas" :key="area" color="neutral" variant="soft" class="rounded-full">
+              {{ area }}
+            </UBadge>
+          </div>
+
+          <div class="mb-6 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+            <UButton icon="i-mdi-email-outline" color="primary" size="lg" class="rounded-lg" @click="copyEmail">
+              {{ translate('buttons.contactMe', 'Contact Me') }}
+            </UButton>
+            <UButton icon="i-mdi-folder-multiple-outline" color="neutral" variant="soft" size="lg" class="rounded-lg" @click="scrollTo('projects')">
+              {{ translate('buttons.viewProjects', 'View Projects') }}
+            </UButton>
+            <NuxtLink to="/resume" class="resume-gradient-button" @click="preserveColorModeForResume">
+              <UIcon name="i-heroicons-document-text" class="text-lg" />
+              <span>{{ t('hero.viewResume') }}</span>
+              <UIcon name="i-heroicons-sparkles" class="text-sm opacity-80" />
             </NuxtLink>
           </div>
+
+          <div v-if="portfolio.profile.location || currentRole" class="mb-5 flex flex-col items-center gap-3 text-sm text-gray-600 dark:text-gray-300 sm:items-start">
+            <div v-if="currentRole" class="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+              <img
+                v-if="currentRole.companyLogo"
+                :src="currentRole.companyLogo"
+                :alt="`${currentRole.company} logo`"
+                class="h-7 w-7 rounded-md object-contain"
+                loading="lazy"
+              />
+              <span>{{ t('hero.currently') }}</span>
+              <a
+                v-if="currentRole.companyLink"
+                :href="currentRole.companyLink"
+                target="_blank"
+                rel="noopener"
+                class="font-semibold company-name hover:underline"
+              >
+                {{ currentRole.company }}
+              </a>
+              <span v-else class="font-semibold company-name">{{ currentRole.company }}</span>
+            </div>
+            <div v-if="portfolio.profile.location" class="flex items-center gap-2">
+              <UIcon name="i-mdi-map-marker-outline" class="text-base text-primary-600 dark:text-primary-300" />
+              <span class="leading-relaxed">{{ portfolio.profile.location }}</span>
+            </div>
+          </div>
+
           <div class="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
             <ClientTooltip :text="emailTooltip">
               <UButton icon="i-twemoji-e-mail" :square="true" color="gray" variant="ghost"
@@ -103,14 +122,84 @@
             </ClientTooltip>
           </div>
         </div>
-        <div v-show="portfolio.profile.avatar"
-          class="block mx-auto sm:mx-0 shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 ring-4 ring-primary-400/50 dark:ring-primary-300/40 rounded-full overflow-hidden">
-          <NuxtImg :src="portfolio.profile.avatar || undefined" :alt="portfolio.profile.name"
-            sizes="96px sm:128px md:160px" width="160" height="160" class="h-full w-full object-cover" format="webp"
-            preload />
+
+        <div v-if="portfolio.profile.avatar" class="mx-auto w-full max-w-[280px]">
+          <div class="rounded-lg border border-gray-200/70 bg-white/75 p-4 shadow-sm dark:border-gray-700/50 dark:bg-gray-900/45">
+            <div class="mx-auto h-36 w-36 overflow-hidden rounded-full ring-4 ring-primary-400/35 dark:ring-primary-300/25">
+              <NuxtImg
+                :src="portfolio.profile.avatar || undefined"
+                :alt="portfolio.profile.name"
+                sizes="144px"
+                width="144"
+                height="144"
+                class="h-full w-full object-cover"
+                format="webp"
+                preload
+              />
+            </div>
+            <div class="mt-4 text-center">
+              <p class="text-sm font-semibold text-gray-950 dark:text-gray-50">{{ portfolio.profile.title }}</p>
+              <p class="mt-1 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+                {{ translate('hero.cardSummary', 'Backend services, infrastructure, and DevOps systems.') }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </UContainer>
+
+    <UModal
+      v-model:open="emailDialogOpen"
+      :title="translate('hero.contactTitle', 'Contact Mahdi')"
+      :description="translate('hero.contactDescription', 'Use this email for infrastructure, backend, or DevOps project inquiries.')"
+      :ui="{ content: 'sm:max-w-md', body: 'space-y-4', footer: 'justify-between gap-2' }"
+    >
+      <template #body>
+        <div class="rounded-lg border border-gray-200/70 bg-gray-50/80 p-3 dark:border-gray-700/60 dark:bg-gray-900/70">
+          <div class="mb-2 flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+            <UIcon name="i-mdi-email-outline" class="text-base text-primary-500 dark:text-primary-300" />
+            <span>{{ translate('hero.emailAddress', 'Email address') }}</span>
+          </div>
+          <div class="flex items-center justify-between gap-3">
+            <code class="min-w-0 break-all text-sm font-semibold text-gray-950 dark:text-gray-50">{{ emailAddress }}</code>
+            <UButton
+              icon="i-mdi-content-copy"
+              color="primary"
+              variant="soft"
+              size="sm"
+              class="shrink-0 rounded-lg"
+              @click="handleModalCopy"
+            >
+              {{ translate('hero.copy', 'Copy') }}
+            </UButton>
+          </div>
+        </div>
+
+        <p v-if="emailDialogMessage" class="text-sm text-amber-600 dark:text-amber-300">
+          {{ emailDialogMessage }}
+        </p>
+      </template>
+
+      <template #footer="{ close }">
+        <UButton
+          color="neutral"
+          variant="ghost"
+          class="rounded-lg"
+          @click="close"
+        >
+          {{ translate('hero.close', 'Close') }}
+        </UButton>
+        <UButton
+          :to="`mailto:${emailAddress}?subject=Infrastructure%20project%20inquiry`"
+          icon="i-mdi-send-outline"
+          color="primary"
+          class="rounded-lg"
+          @click="close"
+        >
+          {{ translate('hero.openEmailApp', 'Open Email App') }}
+        </UButton>
+      </template>
+    </UModal>
   </section>
 
 </template>
@@ -120,9 +209,24 @@ import { computed, ref } from 'vue'
 import { usePortfolio } from '@/composables/usePortfolio'
 import type { CompanyExperience, Experience } from '@/types/portfolio.types'
 
-const { t } = useI18n()
+const { t, te } = useI18n()
 const portfolio = usePortfolio()
 const toast = useToast()
+const colorMode = useColorMode()
+
+function translate(key: string, fallback: string): string {
+  return te(key) ? t(key) : fallback
+}
+
+function scrollTo(id: string) {
+  if (typeof window === 'undefined') return
+  const el = document.getElementById(id)
+  if (el) {
+    const offset = 80
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+}
 
 const currentRole = computed(() => {
   const experiences = portfolio.value.experiences as Array<CompanyExperience | Experience>
@@ -164,48 +268,47 @@ const currentRole = computed(() => {
   return null
 })
 
-/**
- * Email copy-to-clipboard for Hero quick action
- */
 const emailAddress = 'me@mahdium.ir'
 const emailTooltip = ref('Email')
+const emailDialogOpen = ref(false)
+const emailDialogMessage = ref('')
 
 async function copyEmail() {
+  const copied = await tryCopyEmail()
+  if (!copied) {
+    emailDialogOpen.value = true
+  }
+}
+
+async function tryCopyEmail(): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(emailAddress)
     emailTooltip.value = 'Copied'
+    emailDialogMessage.value = ''
     setTimeout(() => { emailTooltip.value = 'Email' }, 1500)
 
-    // Nuxt UI toast: success
     toast.add({
       title: t('toasts.emailCopied.title'),
       description: t('toasts.emailCopied.desc', { email: emailAddress }),
       icon: 'i-mdi-clipboard-check',
       color: 'emerald'
     })
+    return true
   } catch {
-    // Nuxt UI toast: failure (clipboard not accessible)
-    toast.add({
-      title: t('toasts.copyFailed.title'),
-      description: t('toasts.copyFailed.desc', { email: emailAddress }),
-      icon: 'i-mdi-clipboard-alert',
-      color: 'amber'
-    })
+    emailDialogMessage.value = translate('hero.clipboardBlocked', 'Clipboard access is blocked by the browser on this address. You can still select the email or open your email app.')
+    return false
+  }
+}
 
-    // Fallback prompt if clipboard API is unavailable
-    const ok = typeof window !== 'undefined' && window.confirm(`Copy email:\n\n${emailAddress}`)
-    if (ok) {
-      emailTooltip.value = 'Copied'
-      setTimeout(() => { emailTooltip.value = 'Email' }, 1500)
+async function handleModalCopy() {
+  await tryCopyEmail()
+}
 
-      // Show success toast after manual copy confirmation
-      toast.add({
-        title: t('toasts.emailCopied.title'),
-        description: t('toasts.emailCopied.desc', { email: emailAddress }),
-        icon: 'i-mdi-clipboard-check',
-        color: 'emerald'
-      })
-    }
+function preserveColorModeForResume() {
+  if (!import.meta.client) return
+  if (colorMode.value === 'dark') {
+    colorMode.preference = 'dark'
+    localStorage.setItem('nuxt-color-mode', 'dark')
   }
 }
 </script>
@@ -219,16 +322,25 @@ async function copyEmail() {
   color: var(--ui-color-primary-300);
 }
 
-/* Resume button with primary color gradient */
-.resume-button {
+.resume-gradient-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  border-radius: 0.5rem;
   background: linear-gradient(to right,
       var(--ui-color-primary-600),
       var(--ui-color-primary-500),
       var(--ui-color-primary-400));
   box-shadow: 0 10px 15px -3px color-mix(in oklch, var(--ui-color-primary-500) 25%, transparent);
+  transition: all 0.3s;
 }
 
-.resume-button:hover {
+.resume-gradient-button:hover {
+  transform: scale(1.05);
   background: linear-gradient(to right,
       var(--ui-color-primary-700),
       var(--ui-color-primary-600),

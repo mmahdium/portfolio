@@ -1,17 +1,19 @@
 {
   "sections": {
     "work": "سوابق کاری",
-    "workAccordion": "بیش از ۷ سال تجربه در توسعه راهکارهای سازمانی و اپلیکیشن‌های وب.",
+    "workAccordion": "تجربه در توسعه سیستم‌ها و مدیریت زیرساخت.",
     "education": "تحصیلات",
     "recommendations": "توصیه‌نامه‌ها",
     "projects": "پروژه‌ها",
     "projectsAccordion": "اپلیکیشن‌های واقعی ساخته شده برای مشتریان و جامعه توسعه‌دهندگان.",
     "blog": "وبلاگ",
     "contact": "ارتباط",
+    "services": "خدماتی که می‌توانم ارائه کنم",
     "mainTools": "ابزارهای اصلی",
     "roles": "نقش‌ها",
     "values": "ارزش‌ها",
     "skills": "مهارت‌ها",
+    "currentlyExpanding": "در حال گسترش مهارت‌ها",
     "softSkills": "ارزش‌ها و مهارت‌های نرم",
     "language": "مهارت‌های زبانی",
     "githubActivity": "فعالیت گیت‌هاب"
@@ -20,7 +22,12 @@
     "expert": "حرفه‌ای",
     "proficient": "مسلط",
     "usedBefore": "تجربه قبلی",
-    "aiStack": "استک هوش مصنوعی"
+    "aiStack": "استک هوش مصنوعی",
+    "subtitle": "گروه‌بندی ابزارها بر اساس کاربردشان در بک‌اند، زیرساخت و عملیات.",
+    "accordionLabel": "مهارت‌های فرانت‌اند گروه‌بندی‌شده برای بک‌اند، زیرساخت و عملیات."
+  },
+  "services": {
+    "subtitle": "تمرکز روی بک‌اند، زیرساخت و اتوماسیون با تمرکز بر قابلیت اطمینان."
   },
   "softSkillsAccordion": {
     "label": "ذهنیت و توانمندی‌های بین‌فردی که موفقیت تیم را رقم می‌زنند."
@@ -58,6 +65,8 @@
   "buttons": {
     "blog": "مقالات",
     "contact": "ارتباط",
+    "contactMe": "تماس با من",
+    "viewProjects": "مشاهده پروژه‌ها",
     "website": "وب‌سایت",
     "switchToEnglish": "English",
     "switchToPersian": "فارسی"
@@ -116,7 +125,13 @@
     "portfolioTitleSuffix": "نمونه‌کارها"
   },
   "projectLabels": {
-    "openSource": "اوپن‌سورس"
+    "openSource": "اوپن‌سورس",
+    "context": "زمینه پروژه",
+    "role": "نقش من",
+    "keyFeatures": "ویژگی‌های کلیدی",
+    "techStack": "استک فنی",
+    "outcome": "نتیجه",
+    "caseStudyDetails": "جزئیات کیس‌استادی"
   },
   "theme": {
     "customizer": "سفارشی‌سازی تم",
@@ -151,7 +166,15 @@
   "hero": {
     "currently": "در حال حاضر در",
     "viewResume": "مشاهده رزومه",
-    "downloadPdf": "دانلود PDF"
+    "downloadPdf": "دانلود PDF",
+    "cardSummary": "سیستم‌های بک‌اند، زیرساخت و عملیات.",
+    "contactTitle": "ارتباط با مهدی",
+    "contactDescription": "برای پروژه‌های زیرساخت، بک‌اند یا عملیات از این ایمیل استفاده کنید.",
+    "emailAddress": "آدرس ایمیل",
+    "clipboardBlocked": "دسترسی به کلیپ‌بورد روی این آدرس توسط مرورگر محدود شده است. می‌توانید ایمیل را انتخاب کنید یا اپلیکیشن ایمیل را باز کنید.",
+    "close": "بستن",
+    "copy": "کپی",
+    "openEmailApp": "باز کردن ایمیل"
   },
   "toasts": {
     "emailCopied": {
