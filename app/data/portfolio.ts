@@ -192,6 +192,7 @@ export const portfolio: PortfolioData = {
         { label: "C", icon: "i-logos-c", to: "https://en.wikipedia.org/wiki/C_(programming_language)", type: "Language" },
         { label: "C++", icon: "i-logos-c-plusplus", to: "https://en.wikipedia.org/wiki/C%2B%2B", type: "Language" },
         { label: "Arduino", icon: "simple-icons:arduino", to: "https://www.arduino.cc/", type: "Tool" },
+        { label: "MQTT", icon: "simple-icons:mqtt", to: "https://mqtt.org/", type: "Protocol" },
       ],
     },
   ],
@@ -424,6 +425,151 @@ export const portfolio: PortfolioData = {
         "i-logos-docker-icon",
       ],
       category: "freelance",
+    },
+    {
+      name: "TGSS (Telegram to RSS)",
+      description:
+        "A Telegram channel to RSS feed API that takes a public channel ID and returns its most recent posts in RSS format.",
+      context:
+        "A hands-on Go project to refine problem-solving and systems skills. Built core components from scratch rather than relying on heavy third-party solutions or ready-made AI generated code.",
+      role: "Full backend development — custom rate limiter, smart caching layer, and image proxy from scratch.",
+      features: [
+        "Custom-built rate limiter",
+        "Smart caching for repeated requests",
+        "Image proxy for media-rich feeds",
+        "Public Telegram channel RSS output",
+      ],
+      stack: ["Go", "Gin", "gotd", "fx", "zap"],
+      outcome:
+        "A performant RSS gateway that showcases custom infrastructure work and deep Go proficiency.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/TGSS",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-go", "i-logos-gin"],
+      status: "Active",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "TBDel (To Be Deleted)",
+      description:
+        "A simple command-line tool for managing a list of files and directories marked for deletion.",
+      context:
+        "A practical CLI utility for organizing and executing bulk file removal, available on AUR for easy Linux installation.",
+      role: "Design and implementation of the CLI, deletion logic, and AUR packaging.",
+      features: [
+        "Add, remove, and list pending deletions",
+        "Execute batch deletion of marked entries",
+        "Available on AUR",
+      ],
+      stack: ["C#", ".NET"],
+      outcome:
+        "A focused CLI tool solving a real workflow need, distributed via AUR.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/TBDel",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-dotnet"],
+      status: "Active",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "MQTT Logger",
+      description:
+        "A Go application that subscribes to MQTT topics and logs all messages to CSV files for analysis and monitoring.",
+      context:
+        "Originally built as an internal tool to fulfill a real operational need, then open-sourced for broader use. May not be accessible outside Iran due to infrastructure restrictions.",
+      role: "Design and development of the subscription engine, CSV logging pipeline, and connection monitoring.",
+      features: [
+        "Subscribe to one or multiple MQTT topics",
+        "CSV logging with timestamp, topic, and message",
+        "MQTT authentication support",
+        "Configurable logging levels",
+        "Connection status monitoring",
+      ],
+      stack: ["Go", "Paho MQTT"],
+      outcome:
+        "A production-proven monitoring tool bridging MQTT telemetry and data analysis.",
+      links: [
+        {
+          label: "Git (may not be accessible outside Iran)",
+          to: "https://git.mahdium.ir/mahdium/MQTTLogger",
+          icon: "i-mdi-link",
+        },
+      ],
+      icons: ["i-logos-go", "simple-icons:mqtt"],
+      status: "Active",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "CatsOfMastodon Bot",
+      description:
+        "A moderation bot that curates cat posts from public Mastodon instances and publishes them to a Telegram channel.",
+      context:
+        "A self-hosted content curation pipeline with human-in-the-loop approval for a public Telegram channel.",
+      role: "End-to-end development: Mastodon polling, Telegram integration, and admin moderation workflow.",
+      features: [
+        "Monitors catsofmastodon tag across instances",
+        "Forwards candidates to admin for review",
+        "Approval/rejection via Telegram",
+        "Publishes curated posts to a public channel",
+      ],
+      stack: ["C#", ".NET"],
+      outcome:
+        "A running Telegram channel powered by automated Fediverse curation with manual quality control.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/CatsOfMastodonBot",
+          icon: "i-mdi-github",
+        },
+        {
+          label: "Telegram Channel",
+          to: "https://t.me/catsofmastodon",
+          icon: "i-mdi-link",
+        },
+      ],
+      icons: ["i-logos-dotnet"],
+      status: "Active",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "VDR (VirtualDDNSRouter)",
+      description:
+        "A lightweight dynamic DNS router with a client-server architecture for accessing services on dynamic IPs through consistent URLs.",
+      context:
+        "A practical networking solution for accessing home-lab and self-hosted services without static IPs.",
+      role: "Design and implementation of both the IP update client and the reverse-proxy server.",
+      features: [
+        "Client updates server with current IP",
+        "Server reverse-proxies to dynamic backends",
+        "Consistent URL access for dynamic IPs",
+        "Lightweight and self-contained",
+      ],
+      stack: ["C#", ".NET"],
+      outcome:
+        "A reliable networking tool enabling stable remote access to dynamic infrastructure.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/VDR",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-dotnet"],
+      status: "Active",
+      opensource: true,
+      category: "public",
     },
   ],
 };

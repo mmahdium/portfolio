@@ -240,6 +240,86 @@ const portfolioFa: PortfolioData = {
       ],
       category: "freelance",
     },
+    {
+      name: "HoolIt",
+      description:
+        "یک پروژه اوپن‌سورس که جایگزین ساده و سبک dweet.io برای اشتراک‌گذاری داده در IoT فراهم می‌کنه.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/HoolIt",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-dotnet", "i-logos-docker-icon"],
+      status: "فعال",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "TGSS (Telegram to RSS)",
+      description:
+        "API تبدیل کانال تلگرام به RSS — با دادن آیدی یک کانال عمومی، آخرین پست‌ها رو به فرمت RSS برمی‌گردونه.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/TGSS",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-go", "i-logos-gin"],
+      status: "فعال",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "TBDel (To Be Deleted)",
+      description:
+        "ابزار خط فرمانی ساده برای مدیریت فایل‌ها و پوشه‌های علامت‌گذاری‌شده برای حذف. روی AUR هم موجوده.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/TBDel",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-dotnet"],
+      status: "فعال",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "MQTT Logger",
+      description:
+        "اپلیکیشن Go که به topic‌های MQTT وصل میشه و تمام پیام‌ها رو برای تحلیل و مانیتورینگ توی فایل CSV ذخیره می‌کنه. اول به‌عنوان ابزار داخلی شرکت ساخته شد و بعد اوپن‌سورس شد. ممکنه خارج از ایران به خاطر محدودیت‌های اینترنت و دیتاسنتر قابل دسترسی نباشه.",
+      links: [
+        {
+          label: "Git (ممکنه خارج از ایران قابل دسترسی نباشه)",
+          to: "https://git.mahdium.ir/mahdium/MQTTLogger",
+          icon: "i-mdi-link",
+        },
+      ],
+      icons: ["i-logos-go", "simple-icons:mqtt"],
+      status: "فعال",
+      opensource: true,
+      category: "public",
+    },
+    {
+      name: "VDR (VirtualDDNSRouter)",
+      description:
+        "روتر DNS پویای سبک با معماری کلاینت-سرور — برای دسترسی به سرویس‌هایی با IP پویا از طریق آدرس‌های ثابت.",
+      links: [
+        {
+          label: "GitHub",
+          to: "https://github.com/mmahdium/VDR",
+          icon: "i-mdi-github",
+        },
+      ],
+      icons: ["i-logos-dotnet"],
+      status: "فعال",
+      opensource: true,
+      category: "public",
+    },
   ],
 };
 
